@@ -1,6 +1,8 @@
-# OOLT.VN.20231-36
+# Traditional game: Cờ gánh
 
-## Project description
+## Description
+An application for 2 users to play the traditional game Cờ gánh.
+GUI: JavaFX
 
 ## collaborator
 - Nguyễn Xuân Tùng - 20215162 ( team's leader )
