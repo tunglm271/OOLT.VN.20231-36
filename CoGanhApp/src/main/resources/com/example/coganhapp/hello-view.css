@@ -1,0 +1,5 @@
+#Broadgame {
+    -fx-background-image: url("download.jpg");
+    -fx-background-color:transparent;
+    -fx-background-size: cover;
+}
