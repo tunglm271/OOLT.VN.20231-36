@@ -1,2 +1,6 @@
-module $MODULE_NAME$ {
+module CoGanhApp {
+    requires javafx.controls;
+    requires javafx.fxml;
+
+    opens src;
 }
