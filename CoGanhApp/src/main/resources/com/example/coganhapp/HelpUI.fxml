@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.HelpController">
+    <children>
+        <AnchorPane fx:id="menuPane" layoutY="79.0" prefHeight="467.0" prefWidth="150.0" style="-fx-background-color: #5f43b2; -fx-background-radius: 0 5em 0  0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0);">
+            <children>
+                <Line endX="73.5" endY="-0.2078857421875" layoutX="76.0" layoutY="355.0" startX="-76.0" startY="-0.2078857421875" stroke="WHITE" />
+                <Label alignment="CENTER" layoutX="11.0" layoutY="41.0" prefHeight="35.0" prefWidth="128.0" style="-fx-background-color: #fefdfd; -fx-background-radius: 1em;" text="Menu" textFill="#3a315a">
+                    <font>
+                        <Font name="Arial Bold Italic" size="18.0" />
+                    </font>
+                </Label>
+                <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="98.0" prefHeight="257.0" prefWidth="107.0">
+                    <children>
+                        <HBox onMouseClicked="#clickStartButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="61.0" prefWidth="107.0">
+                            <children>
+                                <ImageView fitHeight="35.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../../../../../../../../download/icons8-game-100.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="51.0" prefWidth="78.0" text="Play" textFill="WHITE">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox fx:id="helpButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="50.0" prefWidth="107.0">
+                            <children>
+                                <ImageView fitHeight="38.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../../../../../../../../download/icons8-question-90.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="43.0" prefWidth="73.0" text="Help" textFill="WHITE">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox fx:id="exitBtn" onMouseClicked="#clickExitButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="46.0" prefWidth="107.0">
+                            <children>
+                                <ImageView fitHeight="37.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../../../../../../../../download/icons8-exit-90.png" />
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets left="3.0" top="2.0" />
+                                    </HBox.margin>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="70.0" text="Exit" textFill="WHITE">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+                <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="10.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../../../../../../../download/icons8-woman-96.png" />
+                    </image>
+                </ImageView>
+                <TextField layoutX="45.0" layoutY="380.0" prefHeight="22.0" prefWidth="96.0" text="Player 1" />
+                <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="10.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../../../../../../../download/icons8-man-96.png" />
+                    </image>
+                </ImageView>
+                <TextField layoutX="45.0" layoutY="417.0" prefHeight="22.0" prefWidth="96.0" text="Player 2" />
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="102.0" fitWidth="225.0" layoutX="8.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../../../../download/appicon.png" />
+            </image>
+        </ImageView>
+      <ScrollPane layoutX="169.0" layoutY="87.0" prefHeight="441.0" prefWidth="595.0" style="-fx-background-radius: 1em;">
+         <content>
+            <VBox alignment="CENTER" prefHeight="678.0" prefWidth="580.0" spacing="10.0" style="-fx-background-color: #b1aebb; -fx-background-radius: 1em;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="GUIDE" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Courier New Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="guideText" minHeight="-Infinity" prefHeight="233.0" prefWidth="552.0" style="-fx-background-color: #fefdfd;" wrapText="true">
+                     <font>
+                        <Font name="Courier New" size="12.0" />
+                     </font></TextArea>
+                  <ImageView fitHeight="133.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../../download/yeh-800x450.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="guideText2" minHeight="-Infinity" prefHeight="268.0" prefWidth="505.0" style="-fx-background-color: #fefdfd;" wrapText="true">
+                     <font>
+                        <Font name="Courier New" size="12.0" />
+                     </font>
+                  </TextArea>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+    </children>
+</AnchorPane>

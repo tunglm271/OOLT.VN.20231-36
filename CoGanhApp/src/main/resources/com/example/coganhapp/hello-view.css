@@ -3,3 +3,10 @@
     -fx-background-color:transparent;
     -fx-background-size: cover;
 }
+#surrenderButton {
+    -fx-border-radius: 0;
+}
+#AppWall {
+    -fx-background-image: url("download.jpg");
+    -fx-background-size: cover;
+}
