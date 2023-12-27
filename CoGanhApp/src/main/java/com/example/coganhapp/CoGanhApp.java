@@ -15,7 +15,7 @@ public class CoGanhApp extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 796, 545);
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.getIcons().add(new Image("D:\\download\\vs-versus-vector-background-red-blue-colors-separated-color-sides-glitch-effect-sport-game-fight-battle-210679642.jpg"));
+        stage.getIcons().add(new Image("D:\\study\\project\\OOP\\OOLT.VN.20231-36\\CoGanhApp\\src\\main\\resources\\com\\example\\coganhapp\\media\\appicon.png"));
         stage.show();
     }
 

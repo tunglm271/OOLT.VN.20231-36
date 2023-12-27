@@ -8,35 +8,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.GameController">
    <children>
-      <AnchorPane id="AppWall" layoutX="304.0" layoutY="-6.0" prefHeight="552.0" prefWidth="494.0" style="-fx-background-radius: 0 0 0 4em;">
+      <AnchorPane id="AppWall" fx:id="gameBroad" layoutX="304.0" layoutY="-6.0" prefHeight="552.0" prefWidth="494.0" style="-fx-background-radius: 0 0 0 4em;">
          <children>
-            <ImageView fitHeight="321.0" fitWidth="352.0" layoutX="75.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="328.0" fitWidth="339.0" layoutX="75.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@media/gamebroad.png" />
                </image>
             </ImageView>
-            <Circle fill="#1f37ff" layoutX="82.0" layoutY="113.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#1f37ff" layoutX="393.0" layoutY="268.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#1f37ff" layoutX="393.0" layoutY="187.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#1f37ff" layoutX="393.0" layoutY="113.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#1f37ff" layoutX="314.0" layoutY="113.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#1f37ff" layoutX="239.0" layoutY="113.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#1f37ff" layoutX="158.0" layoutY="113.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="82.0" layoutY="187.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="82.0" layoutY="268.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="82.0" layoutY="342.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="82.0" layoutY="419.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="158.0" layoutY="419.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="239.0" layoutY="419.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="314.0" layoutY="419.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="393.0" layoutY="419.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#ff1f45" layoutX="393.0" layoutY="342.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
             <HBox fx:id="surrenderButton" alignment="CENTER_LEFT" layoutX="160.0" layoutY="462.0" onMouseClicked="#clickSurrender" onMouseEntered="#mouseEnterEffect" onMouseExited="#mouseLeaveEffect" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ff1f45; -fx-background-radius: 2em;">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
@@ -83,7 +66,7 @@
                   <Font name="Arial Bold Italic" size="18.0" />
                </font>
             </Label>
-            <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="97.0" prefHeight="257.0" prefWidth="107.0">
+            <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="97.0" prefHeight="257.0" prefWidth="107.0" spacing="20.0">
                <children>
                   <HBox onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="61.0" prefWidth="107.0">
                      <children>
@@ -196,7 +179,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="102.0" fitWidth="225.0" layoutX="8.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="102.0" fitWidth="212.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@media/appicon.png" />
          </image>
