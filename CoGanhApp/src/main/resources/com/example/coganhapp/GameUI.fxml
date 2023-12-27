@@ -141,7 +141,7 @@
             <TextField layoutX="45.0" layoutY="417.0" onAction="#enterPlayerName" prefHeight="22.0" prefWidth="96.0" text="Player 2" />
          </children>
       </AnchorPane>
-      <VBox fx:id="Player1Card" alignment="TOP_CENTER" layoutX="179.0" layoutY="182.0" prefHeight="82.0" prefWidth="100.0" style="-fx-background-color: #b1aebb; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+      <VBox fx:id="player1Card" alignment="TOP_CENTER" layoutX="179.0" layoutY="182.0" prefHeight="82.0" prefWidth="100.0" style="-fx-background-color: #b1aebb; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
          <children>
             <ImageView fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>

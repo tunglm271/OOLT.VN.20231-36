@@ -31,6 +31,8 @@ public class GameController {
     private Player player1 = new Player("Player 1", PlayerSide.RED);
     private Player player2 = new Player("Player 2", PlayerSide.BLUE);
 
+    private boolean turn = false;
+
     private int kernel = 0;
 
     private int tmpRow;
@@ -54,7 +56,7 @@ public class GameController {
 
 
     @FXML
-    private VBox Player1Card;
+    private VBox player1Card;
 
     @FXML
     private VBox player2Card;
@@ -112,7 +114,7 @@ public class GameController {
     public  void initialize() {
         FadeTransition animation = new FadeTransition();
         animation.setDuration(Duration.seconds(1));
-        animation.setNode(Player1Card);
+        animation.setNode(player1Card);
         animation.setFromValue(0);
         animation.setToValue(1);
 
@@ -124,7 +126,7 @@ public class GameController {
 
         animation.play();
         animation2.play();
-
+        glowEffect();
         for(int i = 0;i<5;i++) {
             for(int j = 0;j<5;j++) {
                 if(i == 0 || ((i == 1 || i == 2) && j == 4) || (i == 1 && j == 0)) {
@@ -151,336 +153,337 @@ public class GameController {
     private void fadeEffect(int row, int column) {
         if(kernel == 0) {
             if(intersectionPoint[row][column].getPlayer() != null) {
-                Paint color = intersectionPoint[row][column].getFill();
-                switch (row) {
-                    case 0 -> {
-                        switch (column) {
-                            case 0 -> {
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column + 1].setOpacity(0.5);
+                if ((turn && intersectionPoint[row][column].getPlayer() == player2) || (!turn && intersectionPoint[row][column].getPlayer() == player1)) {
+                    Paint color = intersectionPoint[row][column].getFill();
+                    switch (row) {
+                        case 0 -> {
+                            switch (column) {
+                                case 0 -> {
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column + 1].setFill(color);
+                                        intersectionPoint[row + 1][column + 1].setOpacity(0.5);
+                                    }
                                 }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
+                                case 1, 3 -> {
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
                                 }
-                                if(intersectionPoint[row+1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column+1].setFill(color);
-                                    intersectionPoint[row+1][column+1].setOpacity(0.5);
+                                case 2 -> {
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column + 1].setFill(color);
+                                        intersectionPoint[row + 1][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column - 1].setFill(color);
+                                        intersectionPoint[row + 1][column - 1].setOpacity(0.5);
+                                    }
                                 }
-                            }
-                            case 1,3  -> {
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column + 1].setOpacity(0.5);
-                                }
-                            }
-                            case 2 -> {
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column + 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column + 1].setFill(color);
-                                    intersectionPoint[row+1][column + 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column - 1].setFill(color);
-                                    intersectionPoint[row+1][column - 1].setOpacity(0.5);
-                                }
-                            }
-                            case 4 -> {
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column - 1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column -1 ].setFill(color);
-                                    intersectionPoint[row+1][column - 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
+                                case 4 -> {
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column - 1].setFill(color);
+                                        intersectionPoint[row + 1][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    case 1,3 -> {
-                        switch (column) {
-                            case 0 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
+                        case 1, 3 -> {
+                            switch (column) {
+                                case 0 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
                                 }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
+                                case 1, 3 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column - 1].setFill(color);
+                                        intersectionPoint[row - 1][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column + 1].setFill(color);
+                                        intersectionPoint[row + 1][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column - 1].setFill(color);
+                                        intersectionPoint[row + 1][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column + 1].setFill(color);
+                                        intersectionPoint[row - 1][column + 1].setOpacity(0.5);
+                                    }
                                 }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column+1].setOpacity(0.5);
+                                case 2 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
                                 }
-                            }
-                            case 1,3 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column-1].setFill(color);
-                                    intersectionPoint[row-1][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column+1].setFill(color);
-                                    intersectionPoint[row+1][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column-1].setFill(color);
-                                    intersectionPoint[row+1][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column+1].setFill(color);
-                                    intersectionPoint[row-1][column+1].setOpacity(0.5);
-                                }
-                            }
-                            case 2 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                            }
 
-                            case 4 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
+                                case 4 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
                                 }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
+                            }
+                        }
+                        case 2 -> {
+                            switch (column) {
+                                case 0 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column + 1].setFill(color);
+                                        intersectionPoint[row - 1][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column + 1].setFill(color);
+                                        intersectionPoint[row + 1][column + 1].setOpacity(0.5);
+                                    }
                                 }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
+                                case 1, 3 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                }
+                                case 2 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column - 1].setFill(color);
+                                        intersectionPoint[row - 1][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column + 1].setFill(color);
+                                        intersectionPoint[row + 1][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column - 1].setFill(color);
+                                        intersectionPoint[row + 1][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column + 1].setFill(color);
+                                        intersectionPoint[row - 1][column + 1].setOpacity(0.5);
+                                    }
+                                }
+                                case 4 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column].setFill(color);
+                                        intersectionPoint[row + 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column - 1].setFill(color);
+                                        intersectionPoint[row - 1][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row + 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row + 1][column - 1].setFill(color);
+                                        intersectionPoint[row + 1][column - 1].setOpacity(0.5);
+                                    }
+                                }
+                            }
+                        }
+                        case 4 -> {
+                            switch (column) {
+                                case 0 -> {
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column + 1].setFill(color);
+                                        intersectionPoint[row - 1][column + 1].setOpacity(0.5);
+                                    }
+                                }
+                                case 1, 3 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                }
+                                case 2 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row][column + 1].setFill(color);
+                                        intersectionPoint[row][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column + 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column + 1].setFill(color);
+                                        intersectionPoint[row - 1][column + 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column - 1].setFill(color);
+                                        intersectionPoint[row - 1][column - 1].setOpacity(0.5);
+                                    }
+                                }
+                                case 4 -> {
+                                    if (intersectionPoint[row - 1][column].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column].setFill(color);
+                                        intersectionPoint[row - 1][column].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row - 1][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row - 1][column - 1].setFill(color);
+                                        intersectionPoint[row - 1][column - 1].setOpacity(0.5);
+                                    }
+                                    if (intersectionPoint[row][column - 1].getPlayer() == null) {
+                                        intersectionPoint[row][column - 1].setFill(color);
+                                        intersectionPoint[row][column - 1].setOpacity(0.5);
+                                    }
                                 }
                             }
                         }
                     }
-                    case 2 -> {
-                        switch (column) {
-                            case 0 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column+1].setFill(color);
-                                    intersectionPoint[row-1][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column+1].setFill(color);
-                                    intersectionPoint[row+1][column+1].setOpacity(0.5);
-                                }
-                            }
-                            case 1,3 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                            }
-                            case 2 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column-1].setFill(color);
-                                    intersectionPoint[row-1][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column+1].setFill(color);
-                                    intersectionPoint[row+1][column+1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column-1].setFill(color);
-                                    intersectionPoint[row+1][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column+1].setFill(color);
-                                    intersectionPoint[row-1][column+1].setOpacity(0.5);
-                                }
-                            }
-                            case 4 ->  {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column].getPlayer() == null) {
-                                    intersectionPoint[row+1][column].setFill(color);
-                                    intersectionPoint[row+1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column-1].setFill(color);
-                                    intersectionPoint[row-1][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row+1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row+1][column-1].setFill(color);
-                                    intersectionPoint[row+1][column-1].setOpacity(0.5);
-                                }
-                            }
-                        }
-                    }
-                    case 4 -> {
-                        switch (column) {
-                            case 0 -> {
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column + 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row-1][column+1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column+1].setFill(color);
-                                    intersectionPoint[row-1][column+1].setOpacity(0.5);
-                                }
-                            }
-                            case 1,3  -> {
-                                if(intersectionPoint[row-1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row-1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column-1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column-1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column+1].getPlayer() == null) {
-                                    intersectionPoint[row][column+1].setFill(color);
-                                    intersectionPoint[row][column + 1].setOpacity(0.5);
-                                }
-                            }
-                            case 2 -> {
-                                if(intersectionPoint[row - 1][column].getPlayer() == null) {
-                                    intersectionPoint[row - 1][column].setFill(color);
-                                    intersectionPoint[row - 1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column - 1].getPlayer() == null) {
-                                    intersectionPoint[row][column - 1].setFill(color);
-                                    intersectionPoint[row][column - 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column + 1].getPlayer() == null) {
-                                    intersectionPoint[row][column + 1].setFill(color);
-                                    intersectionPoint[row][column + 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row - 1][column + 1].getPlayer() == null) {
-                                    intersectionPoint[row - 1][column + 1].setFill(color);
-                                    intersectionPoint[row - 1][column + 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row - 1][column-1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column-1].setFill(color);
-                                    intersectionPoint[row - 1][column - 1].setOpacity(0.5);
-                                }
-                            }
-                            case 4 -> {
-                                if(intersectionPoint[row - 1][column].getPlayer() == null) {
-                                    intersectionPoint[row-1][column].setFill(color);
-                                    intersectionPoint[row - 1][column].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row - 1][column-  1].getPlayer() == null) {
-                                    intersectionPoint[row-1][column-1].setFill(color);
-                                    intersectionPoint[row- 1][column - 1].setOpacity(0.5);
-                                }
-                                if(intersectionPoint[row][column - 1].getPlayer() == null) {
-                                    intersectionPoint[row][column-1].setFill(color);
-                                    intersectionPoint[row][column - 1].setOpacity(0.5);
-                                }
-                            }
-                        }
-                    }
+                    tmpRow = row;
+                    tmpColumn = column;
+                    kernel = 1;
                 }
-                tmpRow = row;
-                tmpColumn = column;
-                kernel = 1;
             }
-
         } else {
             if(intersectionPoint[row][column].getOpacity() == 0.5) {
                 intersectionPoint[row][column].setPlayer(intersectionPoint[tmpRow][tmpColumn].getPlayer());
@@ -491,6 +494,8 @@ public class GameController {
                     intersectionPoint[row][column].setFill(Color.BLUE);
                 }
                 intersectionPoint[row][column].setOpacity(1);
+                turn = !turn;
+                glowEffect();
             }
             for(int i = 0;i<5;i++) {
                 for(int j = 0;j<5;j++) {
@@ -502,6 +507,17 @@ public class GameController {
             kernel = 0;
         }
 
+    }
+
+    @FXML
+    protected void glowEffect() {
+        if(!turn) {
+            player1Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(0,0,255,1), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
+            player2Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
+        } else {
+            player2Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(0,0,255,1), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
+            player1Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
+        }
     }
 
 
