@@ -39,4 +39,8 @@ public class Piece extends Circle {
     public int getColumn() {
         return column;
     }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }
