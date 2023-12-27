@@ -512,7 +512,7 @@ public class GameController {
     @FXML
     protected void glowEffect() {
         if(!turn) {
-            player1Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(0,0,255,1), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
+            player1Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(255,0,0,1), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
             player2Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
         } else {
             player2Card.setStyle("-fx-effect:  dropshadow(three-pass-box, rgba(0,0,255,1), 10, 0, 0, 0);-fx-background-color:  #b1aebb;-fx-background-radius: 1em");
