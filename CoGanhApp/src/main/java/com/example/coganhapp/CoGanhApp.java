@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class CoGanhApp extends Application {
@@ -22,6 +21,8 @@ public class CoGanhApp extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+
 
     @Override
     public void init() throws Exception {

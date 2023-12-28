@@ -28,8 +28,8 @@ import java.util.Objects;
 
 public class GameController {
 
-    private Player player1 = new Player("Player 1", PlayerSide.RED);
-    private Player player2 = new Player("Player 2", PlayerSide.BLUE);
+    private Player player1 = new Player("Player 1", PlayerSide.RED,0,0);
+    private Player player2 = new Player("Player 2", PlayerSide.BLUE,0,0);
 
     private boolean turn = false;
 
@@ -37,10 +37,22 @@ public class GameController {
 
     private int tmpRow;
     private int tmpColumn;
+    private int helpKernel = 0;
 
+    @FXML
+    private AnchorPane ancherRoot;
 
     @FXML
     private AnchorPane gameBroad;
+
+    @FXML
+    private TextField inputName1;
+
+    @FXML
+    private TextField inputName2;
+
+    @FXML
+    protected Label player1name;
 
     @FXML
     protected Label player2name;
@@ -54,6 +66,9 @@ public class GameController {
     @FXML
     private Label surrenderText;
 
+
+    @FXML
+    private HBox playBtn;
 
     @FXML
     private VBox player1Card;
@@ -90,13 +105,23 @@ public class GameController {
     @FXML
     protected void clickSurrender() {
         surrenderPopUp.display();
+        reset();
     }
 
     @FXML
     protected void clickHelpButton(MouseEvent event) throws IOException {
         Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpUI.fxml")));
-        Node source = (Node) event.getSource();
-        source.getScene().setRoot(root);
+        if(event.getSource() == playBtn) {
+            if(helpKernel == 1) {
+                ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
+                helpKernel = 0;
+            }
+        } else {
+            if(helpKernel == 0) {
+                ancherRoot.getChildren().add(root);
+                helpKernel = 1;
+            }
+        }
     }
 
     @FXML
@@ -106,8 +131,10 @@ public class GameController {
 
     @FXML
     protected void enterPlayerName(ActionEvent event) {
-        if(event.getTarget() instanceof TextField input) {
-            player2name.setText(input.getText());
+        if(event.getSource() == inputName1) {
+            player1name.setText(inputName1.getText());
+        } else {
+            player2name.setText(inputName2.getText());
         }
     }
     @FXML
@@ -320,6 +347,24 @@ public class GameController {
         if(piece.getPlayer() == null) {
             piece.setFill(paint);
             piece.setOpacity(0.5);
+        }
+    }
+    protected void reset() {
+        for(int i = 0;i<5;i++) {
+            for(int j = 0;j<5;j++) {
+                if(i == 0 || ((i == 1 || i == 2) && j == 4) || (i == 1 && j == 0)) {
+                    intersectionPoint[i][j].setPlayer(player1);
+                    intersectionPoint[i][j].setFill(Color.RED);
+                    intersectionPoint[i][j].setOpacity(1);
+                } else if(i == 4 || ((i == 2 || i == 3) && j == 0) || (i == 3 && j == 4)) {
+                    intersectionPoint[i][j].setPlayer(player2);
+                    intersectionPoint[i][j].setFill(Color.BLUE);
+                    intersectionPoint[i][j].setOpacity(1);
+                } else {
+                    intersectionPoint[i][j].setPlayer(null);
+                    intersectionPoint[i][j].setOpacity(0);
+                }
+            }
         }
     }
 
