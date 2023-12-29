@@ -319,6 +319,52 @@ public class GameController {
                 }
                 intersectionPoint[row][column].setOpacity(1);
                 ///viet ham xem an  nhau nhu nao
+
+                switch (row) {
+                    case 0, 4 -> {
+                        switch (column) {
+                            case 1, 2, 3 -> {
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row][column-1], intersectionPoint[row][column+1]);
+                            }
+                        }
+                    }
+                    case 1, 3 -> {
+                        switch (column) {
+                            case 0, 4 -> {
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column], intersectionPoint[row-1][column]);
+                            }
+                            case 2 -> {
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column], intersectionPoint[row-1][column]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row][column-1], intersectionPoint[row][column+1]);
+                            }
+                            case 1, 3 -> {
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column], intersectionPoint[row-1][column]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row][column-1], intersectionPoint[row][column+1]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row-1][column-1], intersectionPoint[row+1][column+1]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column-1], intersectionPoint[row-1][column+1]);
+                            }
+                        }
+                    }
+                    case 2 -> {
+                        switch (column) {
+                            case 0, 4 -> {
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column], intersectionPoint[row-1][column]);
+                            }
+                            case 1, 3 -> {
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column], intersectionPoint[row-1][column]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row][column-1], intersectionPoint[row][column+1]);
+                            }
+                            case 2 -> {
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column], intersectionPoint[row-1][column]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row][column-1], intersectionPoint[row][column+1]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row-1][column-1], intersectionPoint[row+1][column+1]);
+                                makeGanh(intersectionPoint[row][column], intersectionPoint[row+1][column-1], intersectionPoint[row-1][column+1]);
+                            }
+                        }
+                    }
+                }
+
+
                 turn = !turn;
                 glowEffect();
             }
@@ -332,6 +378,17 @@ public class GameController {
             kernel = 0;
         }
 
+    }
+
+    protected void makeGanh(Piece piece1, Piece piece2, Piece piece3) {
+        if (piece1.getPlayer() != piece2.getPlayer() && piece1.getPlayer() != piece3.getPlayer() && piece2.getPlayer() != null && piece3.getPlayer() != null) {
+            piece2.setPlayer(piece1.getPlayer());
+            piece3.setPlayer(piece1.getPlayer());
+            piece2.setFill(piece1.getFill());
+            piece3.setFill(piece1.getFill());
+            piece2.setOpacity(1);
+            piece3.setOpacity(1);
+        }
     }
 
     @FXML
