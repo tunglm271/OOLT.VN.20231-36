@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="640.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.HelpController">
+    <children>
+      <ScrollPane layoutX="3.0" layoutY="-1.0" prefHeight="555.0" prefWidth="640.0" style="-fx-background-radius: 1em;">
+         <content>
+            <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="706.0" prefWidth="625.0" spacing="10.0" style="-fx-background-color: #b1aebb; -fx-background-radius: 1em;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="GUIDE" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Courier New Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="guideText" minHeight="-Infinity" prefHeight="233.0" prefWidth="552.0" style="-fx-background-color: #fefdfd;" wrapText="true">
+                     <font>
+                        <Font name="Courier New" size="12.0" />
+                     </font>
+                  </TextArea>
+                  <ImageView fitHeight="133.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/yeh-800x450.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="guideText2" minHeight="-Infinity" prefHeight="268.0" prefWidth="505.0" style="-fx-background-color: #fefdfd;" wrapText="true">
+                     <font>
+                        <Font name="Courier New" size="12.0" />
+                     </font>
+                  </TextArea>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+    </children>
+</AnchorPane>
