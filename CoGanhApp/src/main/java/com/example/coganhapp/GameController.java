@@ -34,6 +34,7 @@ public class GameController {
     private boolean turn = false;
 
     private int kernel = 0;
+    //dung 4 bien nay de dieu khien
 
     private int tmpRow;
     private int tmpColumn;
@@ -110,7 +111,6 @@ public class GameController {
 
     @FXML
     protected void clickHelpButton(MouseEvent event) throws IOException {
-        Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpUI.fxml")));
         if(event.getSource() == playBtn) {
             if(helpKernel == 1) {
                 ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
@@ -118,6 +118,7 @@ public class GameController {
             }
         } else {
             if(helpKernel == 0) {
+                Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpUI.fxml")));
                 ancherRoot.getChildren().add(root);
                 helpKernel = 1;
             }
@@ -170,14 +171,14 @@ public class GameController {
                         Piece source = (Piece) mouseEvent.getSource();
                         int row = source.getRow();
                         int columm = source.getColumn();
-                        fadeEffect(row,columm);
+                        makeMove(row,columm);
                     }
                 });
             }
         }
     }
 
-    private void fadeEffect(int row, int column) {
+    private void makeMove(int row, int column) {
         if(kernel == 0) {
             if(intersectionPoint[row][column].getPlayer() != null) {
                 if ((turn && intersectionPoint[row][column].getPlayer() == player2) || (!turn && intersectionPoint[row][column].getPlayer() == player1)) {
@@ -317,6 +318,7 @@ public class GameController {
                     intersectionPoint[row][column].setFill(Color.BLUE);
                 }
                 intersectionPoint[row][column].setOpacity(1);
+                ///viet ham xem an  nhau nhu nao
                 turn = !turn;
                 glowEffect();
             }
