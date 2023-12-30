@@ -110,7 +110,7 @@
                         <Image url="@media/gamebroad.png" />
                      </image>
                   </ImageView>
-                  <HBox fx:id="surrenderButton" alignment="CENTER_LEFT" layoutX="160.0" layoutY="462.0" onMouseClicked="#clickSurrender" onMouseEntered="#mouseEnterEffect" onMouseExited="#mouseLeaveEffect" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ff1f45; -fx-background-radius: 2em;">
+                  <HBox fx:id="surrenderButton" alignment="CENTER_LEFT" layoutX="251.0" layoutY="465.0" onMouseClicked="#clickSurrender" onMouseEntered="#mouseEnterEffect" onMouseExited="#mouseLeaveEffect" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ff1f45; -fx-background-radius: 2em;">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -127,24 +127,41 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="202.0" layoutY="25.0" prefHeight="55.0" prefWidth="96.0">
+                  <HBox layoutX="154.0" layoutY="27.0" prefHeight="55.0" prefWidth="176.0">
                      <children>
-                        <Label fx:id="player1Score" text="8" textFill="#ff0808">
+                        <Label fx:id="player1Score" alignment="CENTER" prefHeight="55.0" prefWidth="63.0" text="8" textFill="#ff0808">
                            <font>
                               <Font name="System Bold" size="38.0" />
                            </font>
                         </Label>
-                        <Label text=" - " textFill="#f7f7f7">
+                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="51.0" text=" - " textFill="#f7f7f7">
                            <font>
                               <Font name="System Bold" size="38.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player2Score" text="8" textFill="#4164ff">
+                        <Label fx:id="player2Score" alignment="CENTER" prefHeight="55.0" prefWidth="61.0" text="8" textFill="#4164ff">
                            <font>
                               <Font name="System Bold" size="38.0" />
                            </font>
                         </Label>
                      </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="60.0" layoutY="465.0" onMouseClicked="#clickUndo" prefHeight="40.0" prefWidth="160.0" spacing="10.0" style="-fx-background-color: #00CCFF; -fx-background-radius: 2em;">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@media/icons8-undo-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Undo move" textFill="#fff7f7">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </HBox>
                </children>
             </AnchorPane>
@@ -160,8 +177,8 @@
                         <Font name="Segoe UI Black Italic" size="17.0" />
                      </font>
                   </Label>
-                  <Label text="Win: 0" />
-                  <Label text="lose: 0" />
+                  <Label fx:id="player1Win" text="Win: 0" />
+                  <Label fx:id="player1Lose" text="lose: 0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -179,8 +196,8 @@
                         <Font name="Segoe UI Black Italic" size="17.0" />
                      </font>
                   </Label>
-                  <Label text="Win: 0" />
-                  <Label text="Lose: 0" />
+                  <Label fx:id="player2Win" text="Win: 0" />
+                  <Label fx:id="player2Lose" text="Lose: 0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
