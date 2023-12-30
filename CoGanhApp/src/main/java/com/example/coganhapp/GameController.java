@@ -152,6 +152,11 @@ public class GameController {
     }
 
     @FXML
+    protected void clickUndo() {
+
+    }
+
+    @FXML
     protected void clickHelpButton(MouseEvent event) throws IOException {
         if(event.getSource() == playBtn) {
             if(helpKernel == 1) {
