@@ -31,6 +31,8 @@ public class GameController {
     private Player player1 = new Player("Player 1", PlayerSide.RED,0,0);
     private Player player2 = new Player("Player 2", PlayerSide.BLUE,0,0);
 
+    private int n1 = 8, n2 = 8;
+
     private boolean turn = false;
 
     private int kernel = 0;
@@ -60,6 +62,18 @@ public class GameController {
 
     @FXML
     protected Label player1Score;
+
+    @FXML
+    protected Label player1Win;
+
+    @FXML
+    protected Label player2Lose;
+
+    @FXML
+    protected Label player2Win;
+
+    @FXML
+    protected Label player1Lose;
 
     @FXML
     protected Label player2Score;
@@ -110,7 +124,21 @@ public class GameController {
 
     @FXML
     protected void clickSurrender() {
-        surrenderPopUp.display();
+        surrenderPopUp.display(turn,player1name.getText(), player2name.getText());
+        if (turn) {
+            player1.win += 1;
+            player2.lose += 1;
+            player1Win.setText("Win: " + player1.win);
+            player2Lose.setText("Lose: " + player2.lose);
+        } else {
+            player2.win += 1;
+            player1.lose += 1;
+            player2Win.setText("Win: " + player2.win);
+            player1Lose.setText("Lose: " + player1.lose);
+        }
+        turn = false;
+        player1Score.setText("8");
+        player2Score.setText("8");
         reset();
     }
 
@@ -150,12 +178,14 @@ public class GameController {
         animation.setNode(player1Card);
         animation.setFromValue(0);
         animation.setToValue(1);
+        player1Score.setText(String.valueOf(n1));
 
         FadeTransition animation2 = new FadeTransition();
         animation2.setDuration(Duration.seconds(1));
         animation2.setNode(player2Card);
         animation2.setFromValue(0);
         animation2.setToValue(1);
+        player2Score.setText(String.valueOf(n2));
 
         animation.play();
         animation2.play();
@@ -368,6 +398,10 @@ public class GameController {
                     }
                 }
 
+                makeVay();
+
+                getBoard();
+
                 turn = !turn;
                 glowEffect();
             }
@@ -381,6 +415,153 @@ public class GameController {
             kernel = 0;
         }
 
+    }
+
+    protected void getBoard() {
+        n1 = 0; n2 = 0;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (intersectionPoint[i][j].getPlayer() == player1)
+                    n1++;
+                if (intersectionPoint[i][j].getPlayer() == player2)
+                    n2++;
+            }
+        }
+
+        player1Score.setText(String.valueOf(n1));
+        player2Score.setText(String.valueOf(n2));
+
+        if (n1 == 16) {
+            player1.win += 1;
+            player2.lose += 1;
+            player1Win.setText("Win: " + player1.win);
+            player2Lose.setText("Lose: " + player2.lose);
+            Win.display(player1name.getText());
+            player1Score.setText("8");
+            player2Score.setText("8");
+            reset();
+        }
+        if (n2 == 16) {
+            player2.win += 1;
+            player1.lose += 1;
+            player2Win.setText("Win: " + player2.win);
+            player1Lose.setText("Lose: " + player1.lose);
+            Win.display(player1name.getText());
+            player1Score.setText("8");
+            player2Score.setText("8");
+            reset();
+        }
+    }
+
+    protected void makeVay() {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (intersectionPoint[i][j].getPlayer() != null) {
+                    switch (i) {
+                        case 0 -> {
+                            switch (j) {
+                                case 0 -> {
+                                    if (checkVay(i, j, i, j+1) && checkVay(i, j, i+1, j) && checkVay(i, j, i+1, j+1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 1, 3 -> {
+                                    if (checkVay(i, j, i, j+1) && checkVay(i, j, i+1, j) && checkVay(i, j, i, j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 2 -> {
+                                    if (checkVay(i, j, i+1, j) && checkVay(i, j, i, j-1) && checkVay(i, j, i, j+1) && checkVay(i, j, i+1, j+1) && checkVay(i, j, i+1, j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 4 -> {
+                                    if (checkVay(i, j, i+1, j) && checkVay(i, j, i+1, j-1) && checkVay(i, j, i, j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                            }
+                        }
+                        case 1, 3 -> {
+                            switch (j) {
+                                case 0 -> {
+                                    if (checkVay(i, j, i-1, j) && checkVay(i, j, i+1, j) && checkVay(i, j, i, j+1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 1, 3 -> {
+                                    if (checkVay(i, j, i-1, j) && checkVay(i, j, i+1, j) && checkVay(i, j,i,j+1)&&checkVay(i,j,i,j-1)&&checkVay(i,j,i-1,j-1)&&checkVay(i,j,i+1,j+1)&&checkVay(i,j,i+1,j-1)&&checkVay(i,j,i-1,j+1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 2 -> {
+                                    if (checkVay(i,j,i-1,j)&&checkVay(i,j,i+1,j)&&checkVay(i,j,i,j+1)&&checkVay(i,j,i,j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 4 -> {
+                                    if (checkVay(i,j,i-1,j)&&checkVay(i,j,i+1,j)&&checkVay(i,j,i,j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                            }
+                        }
+                        case 2 -> {
+                            switch (j) {
+                                case 0 -> {
+                                    if (checkVay(i,j,i-1,j)&&checkVay(i,j,i+1,j)&&checkVay(i,j,i,j+1)&&checkVay(i,j,i-1,j+1)&&checkVay(i,j,i+1,j+1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 1, 3 -> {
+                                    if (checkVay(i,j,i-1,j)&&checkVay(i,j,i+1,j)&&checkVay(i,j,i,j+1)&&checkVay(i,j,i,j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 2 -> {
+                                    if (checkVay(i, j, i-1, j) && checkVay(i, j, i+1, j) && checkVay(i, j,i,j+1)&&checkVay(i,j,i,j-1)&&checkVay(i,j,i-1,j-1)&&checkVay(i,j,i+1,j+1)&&checkVay(i,j,i+1,j-1)&&checkVay(i,j,i-1,j+1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 4 -> {
+                                    if (checkVay(i,j,i-1,j)&&checkVay(i,j,i+1,j)&&checkVay(i,j,i,j-1)&&checkVay(i,j,i-1,j-1)&&checkVay(i,j,i+1,j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                            }
+                        }
+                        case 4 -> {
+                            switch (j) {
+                                case 0 -> {
+                                    if (checkVay(i,j,i,j+1)&&checkVay(i,j,i-1,j)&&checkVay(i,j,i-1,j+1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 1, 3 -> {
+                                    if (checkVay(i,j,i-1,j)&&checkVay(i,j,i,j-1)&&checkVay(i,j,i,j+1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 2 -> {
+                                    if(checkVay(i,j,i-1,j)&&checkVay(i,j,i,j-1)&&checkVay(i,j,i,j+1)&&checkVay(i,j,i-1,j-1)&&checkVay(i,j,i-1,j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                                case 4 -> {
+                                    if (checkVay(i,j,i-1,j)&&checkVay(i,j,i-1,j-1)&&checkVay(i,j,i,j-1))
+                                        changeColor(intersectionPoint[i][j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    protected boolean checkVay(int i, int j, int m, int n) {
+        if (intersectionPoint[m][n].getPlayer() == null)
+            return false;
+        if (intersectionPoint[i][j].getPlayer() != intersectionPoint[m][n].getPlayer())
+            return true;
+        return false;
+    }
+
+    protected void changeColor(Piece piece) {
+        if (piece.getPlayer().getSide() == PlayerSide.RED) {
+            piece.setFill(Color.BLUE);
+            piece.setPlayer(player2);
+            piece.setOpacity(1);
+        } else if (piece.getPlayer().getSide() == PlayerSide.BLUE) {
+            piece.setFill(Color.RED);
+            piece.setPlayer(player1);
+            piece.setOpacity(1);
+        }
     }
 
     protected void makeGanh(Piece piece1, Piece piece2, Piece piece3) {

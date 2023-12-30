@@ -7,8 +7,8 @@ import java.util.LinkedList;
 public class Player {
     private String playerName;
     private PlayerSide side;
-    private int win;
-    private int lose;
+    public int win;
+    public int lose;
 
     public Player(String name, PlayerSide side, int win ,int lose) {
         this.playerName = name;
