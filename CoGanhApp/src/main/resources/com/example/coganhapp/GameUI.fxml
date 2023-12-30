@@ -146,14 +146,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="60.0" layoutY="465.0" onMouseClicked="#clickUndo" prefHeight="40.0" prefWidth="160.0" spacing="10.0" style="-fx-background-color: #00CCFF; -fx-background-radius: 2em;">
+                  <HBox fx:id="undoBtn" alignment="CENTER_LEFT" layoutX="60.0" layoutY="465.0" onMouseClicked="#clickUndo" onMouseEntered="#undoEnterEffect" onMouseExited="#undoLeaveEffet" prefHeight="40.0" prefWidth="160.0" spacing="10.0" style="-fx-background-color: #00CCFF; -fx-background-radius: 2em;">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@media/icons8-undo-100.png" />
                            </image>
                         </ImageView>
-                        <Label text="Undo move" textFill="#fff7f7">
+                        <Label fx:id="undoText" text="Undo move" textFill="#fff7f7">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

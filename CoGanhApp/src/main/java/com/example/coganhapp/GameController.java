@@ -7,11 +7,9 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,11 +19,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Vector;
 
 public class GameController {
 
@@ -42,6 +40,12 @@ public class GameController {
     private int tmpRow;
     private int tmpColumn;
     private int helpKernel = 0;
+
+    private int undoNumber = 0;
+
+    private boolean checkNumber = true;
+
+    private Vector<Piece[][]> undoList= new Vector<>();
 
     @FXML
     private AnchorPane ancherRoot;
@@ -81,7 +85,6 @@ public class GameController {
 
     @FXML
     protected Piece[][] intersectionPoint = new Piece[5][5];
-    protected Piece[][] tmp = new Piece[5][5];
 
     @FXML
     private HBox surrenderButton;
@@ -97,6 +100,32 @@ public class GameController {
 
     @FXML
     private VBox player2Card;
+    @FXML
+    private HBox undoBtn;
+    @FXML
+    private Label undoText;
+
+    @FXML
+    protected void undoEnterEffect() {
+        undoBtn.setCursor(Cursor.HAND);
+        undoText.setTextFill(Color.rgb(0,204,255));
+        undoBtn.setStyle("-fx-background-color: white;-fx-background-radius: 2em;" );
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.15),undoBtn);
+        scaleTransition.setToY(1.2);
+        scaleTransition.setToX(1.2);
+        scaleTransition.play();
+    }
+
+    @FXML
+    protected void undoLeaveEffet() {
+        undoBtn.setCursor(Cursor.HAND);
+        undoText.setTextFill(Color.WHITE);
+        undoBtn.setStyle("-fx-background-color: #00CCFF;-fx-background-radius: 2em;" );
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.15),undoBtn);
+        scaleTransition.setToY(1);
+        scaleTransition.setToX(1);
+        scaleTransition.play();
+    }
     @FXML
     protected void mouseEnterEffect() {
         surrenderButton.setCursor(Cursor.HAND);
@@ -156,9 +185,9 @@ public class GameController {
     protected void clickUndo() {
         for(int i = 0;i<5;i++) {
             for(int j = 0;j<5;j++) {
-                if (tmp[i][j].getPlayer() != null) {
-                    intersectionPoint[i][j].setPlayer(tmp[i][j].getPlayer());
-                    intersectionPoint[i][j].setFill(tmp[i][j].getFill());
+                if (undoList.get(undoList.size()-1)[i][j].getPlayer() != null) {
+                    intersectionPoint[i][j].setPlayer(undoList.get(undoList.size()-1)[i][j].getPlayer());
+                    intersectionPoint[i][j].setFill(undoList.get(undoList.size()-1)[i][j].getFill());
                     intersectionPoint[i][j].setOpacity(1);
                 } else {
                     intersectionPoint[i][j].setPlayer(null);
@@ -168,7 +197,9 @@ public class GameController {
             }
         }
         turn = !turn;
+        undoList.remove(undoList.size()-1);
         glowEffect();
+        getBoard();
     }
 
     @FXML
@@ -220,10 +251,6 @@ public class GameController {
         animation2.play();
         glowEffect();
 
-        for (int i = 0; i < 5; i++)
-            for (int j = 0; j < 5; j++)
-                tmp[i][j] = new Piece(i,j,null);
-
         for(int i = 0;i<5;i++) {
             for(int j = 0;j<5;j++) {
                 if(i == 0 || ((i == 1 || i == 2) && j == 4) || (i == 1 && j == 0)) {
@@ -248,6 +275,10 @@ public class GameController {
     }
 
     private void copyintersectionPoint() {
+        Piece[][] tmp = new Piece[5][5];
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 5; j++)
+                tmp[i][j] = new Piece(i,j,null);
         for(int i = 0;i<5;i++) {
             for(int j = 0;j<5;j++) {
                 if (intersectionPoint[i][j].getPlayer() != null) {
@@ -260,6 +291,12 @@ public class GameController {
                     tmp[i][j].setOpacity(0);
                 }
             }
+        }
+        if (checkNumber) {
+            undoList.add(tmp);
+            checkNumber = false;
+        } else {
+            checkNumber = true;
         }
     }
 
