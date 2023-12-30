@@ -4,6 +4,7 @@ import com.example.coganhapp.broad.Piece;
 import com.example.coganhapp.game.Player;
 import com.example.coganhapp.game.PlayerSide;
 import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -100,12 +101,20 @@ public class GameController {
         surrenderButton.setCursor(Cursor.HAND);
         surrenderText.setTextFill(Color.rgb(255,31,69));
         surrenderButton.setStyle("-fx-background-color: white;-fx-background-radius: 2em;" );
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.15),surrenderButton);
+        scaleTransition.setToY(1.2);
+        scaleTransition.setToX(1.2);
+        scaleTransition.play();
     }
 
     @FXML
     protected void mouseLeaveEffect() {
         surrenderText.setTextFill(Color.WHITE);
         surrenderButton.setStyle("-fx-background-color:  #ff1f45;-fx-background-radius: 2em;");
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.15),surrenderButton);
+        scaleTransition.setToY(1);
+        scaleTransition.setToX(1);
+        scaleTransition.play();
     }
 
     @FXML
@@ -124,7 +133,11 @@ public class GameController {
 
     @FXML
     protected void clickSurrender() {
-        surrenderPopUp.display();
+        if (turn == false) {
+            surrenderPopUp.display(player2name.getText());
+        } else {
+            surrenderPopUp.display(player1name.getText());
+        }
         player1Score.setText("8");
         player2Score.setText("8");
         reset();
@@ -418,7 +431,6 @@ public class GameController {
 
         player1Score.setText(String.valueOf(n1));
         player2Score.setText(String.valueOf(n2));
-
         if (n1 == 16) {
             player1.win += 1;
             player2.lose += 1;
