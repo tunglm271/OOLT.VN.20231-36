@@ -133,11 +133,19 @@ public class GameController {
 
     @FXML
     protected void clickSurrender() {
-        if (turn == false) {
-            surrenderPopUp.display(player2name.getText());
+        surrenderPopUp.display(turn,player1name.getText(), player2name.getText());
+        if (turn) {
+            player1.win += 1;
+            player2.lose += 1;
+            player1Win.setText("Win: " + player1.win);
+            player2Lose.setText("Lose: " + player2.lose);
         } else {
-            surrenderPopUp.display(player1name.getText());
+            player2.win += 1;
+            player1.lose += 1;
+            player2Win.setText("Win: " + player2.win);
+            player1Lose.setText("Lose: " + player1.lose);
         }
+        turn = false;
         player1Score.setText("8");
         player2Score.setText("8");
         reset();
