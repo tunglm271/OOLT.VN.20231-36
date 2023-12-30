@@ -418,13 +418,9 @@ public class GameController {
         if(n1 == 16) {
             WinPopUp.display(true, player1.getPlayerName(), player2.getPlayerName());
             turn =false;
-            glowEffect();
-            reset();
-        } else {
+        } else if(n2 == 16) {
             WinPopUp.display(false, player1.getPlayerName(), player2.getPlayerName());
             turn =false;
-            glowEffect();
-            reset();
         }
     }
 
@@ -584,6 +580,8 @@ public class GameController {
                 }
             }
         }
+        turn =false;
+        glowEffect();
     }
 
 
