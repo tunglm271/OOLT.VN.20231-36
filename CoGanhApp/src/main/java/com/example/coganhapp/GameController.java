@@ -165,12 +165,14 @@ public class GameController {
         animation.setNode(player1Card);
         animation.setFromValue(0);
         animation.setToValue(1);
+        player1Score.setText(String.valueOf(n1));
 
         FadeTransition animation2 = new FadeTransition();
         animation2.setDuration(Duration.seconds(1));
         animation2.setNode(player2Card);
         animation2.setFromValue(0);
         animation2.setToValue(1);
+        player2Score.setText(String.valueOf(n2));
 
         animation.play();
         animation2.play();
@@ -383,6 +385,8 @@ public class GameController {
                     }
                 }
                 makeVay();
+                getBoard();
+
                 turn = !turn;
                 glowEffect();
             }
@@ -396,6 +400,21 @@ public class GameController {
             kernel = 0;
         }
 
+    }
+
+    protected void getBoard() {
+        n1 = 0; n2 = 0;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (intersectionPoint[i][j].getPlayer() == player1)
+                    n1++;
+                if (intersectionPoint[i][j].getPlayer() == player2)
+                    n2++;
+            }
+        }
+
+        player1Score.setText(String.valueOf(n1));
+        player2Score.setText(String.valueOf(n2));
     }
 
     protected void makeVay() {
@@ -500,8 +519,12 @@ public class GameController {
     protected void changeColor(Piece piece) {
         if (piece.getPlayer().getSide() == PlayerSide.RED) {
             piece.setFill(Color.BLUE);
+            piece.setPlayer(player2);
+            piece.setOpacity(1);
         } else if (piece.getPlayer().getSide() == PlayerSide.BLUE) {
             piece.setFill(Color.RED);
+            piece.setPlayer(player1);
+            piece.setOpacity(1);
         }
     }
 
