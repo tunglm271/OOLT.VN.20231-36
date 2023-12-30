@@ -56,6 +56,7 @@ public class HelpController {
                 Tương tự với các trò chơi khác, cờ gánh ban đầu được chơi với các vật dụng khá đơn giản và dễ tìm thấy như: vỏ nghêu, viên sỏi, bởi lẽ thế mà trò chơi rất dân gian, dễ tiếp cận đến mọi người. Đến thời điểm hiện tại, trò chơi cờ gánh đã phổ biến rộng rãi hơn, thậm chí đã phát triển thành các game Online được đông đảo bạn trẻ đón nhận.
                 Số người chơi: 2 người
                 """);
+        guideText.setEditable(false);
         guideText2.setText("""
                 Khi tham gia trò chơi, mỗi người chơi được chia 8 quân cờ, có màu sắc (hoặc nhận dạng) khác với quân cờ của đối phương. Mỗi người chơi sẽ thực hiện việc di chuyển quân cờ của mình đến một trong những giao điểm lân cận trên bàn cờ vuông. Di chuyển có thể theo đường ngang, đứng hoặc đường chéo, như đã được thể hiện trên bàn cờ. Điều quan trọng là các điểm đó phải còn trống, tức là không có quân cờ nào ở đó.
                                
@@ -70,5 +71,6 @@ public class HelpController {
                                
                 Điều quan trọng là người chơi phải chủ động và thực hiện nước đi bằng cách di chuyển quân cờ của họ vào giữa hai quân cờ của đối phương, và không thể thực hiện nước đi "gánh" trong lúc đối phương đang thực hiện lượt đi của họ.
                 """);
+        guideText2.setEditable(false);
     }
 }
