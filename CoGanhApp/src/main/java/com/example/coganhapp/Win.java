@@ -8,18 +8,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.*;
 
-
-public class surrenderPopUp {
-
-
-    public static void display()
+public class Win {
+    public static void display(String playName)
     {
-        Stage popupwindow=new Stage();
+        Stage popupwindow =new Stage();
 
         popupwindow.initModality(Modality.APPLICATION_MODAL);
-        popupwindow.setTitle("Surrender");
+        popupwindow.setTitle("Win!");
 
-        Label label1= new Label("You've surrendered !");
+        Label label1= new Label(playName + " win !");
         label1.setFont(Font.font("Arial",FontWeight.BOLD,14));
 
         Button button1= new Button("OK !");
@@ -42,6 +39,4 @@ public class surrenderPopUp {
         popupwindow.showAndWait();
 
     }
-
 }
-

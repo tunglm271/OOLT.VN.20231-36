@@ -127,9 +127,9 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="168.0" layoutY="27.0" prefHeight="55.0" prefWidth="159.0">
+                  <HBox layoutX="202.0" layoutY="25.0" prefHeight="55.0" prefWidth="96.0">
                      <children>
-                        <Label fx:id="player1Score" alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="65.0" text="8" textFill="#ff0808">
+                        <Label fx:id="player1Score" text="8" textFill="#ff0808">
                            <font>
                               <Font name="System Bold" size="38.0" />
                            </font>
@@ -139,7 +139,7 @@
                               <Font name="System Bold" size="38.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player2Score" alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="57.0" text="8" textFill="#4164ff">
+                        <Label fx:id="player2Score" text="8" textFill="#4164ff">
                            <font>
                               <Font name="System Bold" size="38.0" />
                            </font>
