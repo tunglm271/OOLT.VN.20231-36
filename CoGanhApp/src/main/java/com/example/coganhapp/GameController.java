@@ -415,6 +415,17 @@ public class GameController {
 
         player1Score.setText(String.valueOf(n1));
         player2Score.setText(String.valueOf(n2));
+        if(n1 == 16) {
+            WinPopUp.display(true, player1.getPlayerName(), player2.getPlayerName());
+            turn =false;
+            glowEffect();
+            reset();
+        } else {
+            WinPopUp.display(false, player1.getPlayerName(), player2.getPlayerName());
+            turn =false;
+            glowEffect();
+            reset();
+        }
     }
 
     protected void makeVay() {
