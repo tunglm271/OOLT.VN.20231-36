@@ -153,7 +153,7 @@ public class GameController {
 
     @FXML
     protected void clickUndo() {
-
+        System.out.println("asd");
     }
 
     @FXML
