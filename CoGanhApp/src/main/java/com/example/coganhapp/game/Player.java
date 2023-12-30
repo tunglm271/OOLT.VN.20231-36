@@ -20,4 +20,12 @@ public class Player {
     public PlayerSide getSide() {
         return side;
     }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 }
