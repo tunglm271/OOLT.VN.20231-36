@@ -65,6 +65,18 @@ public class GameController {
     protected Label player1Score;
 
     @FXML
+    protected Label player1Win;
+
+    @FXML
+    protected Label player2Lose;
+
+    @FXML
+    protected Label player2Win;
+
+    @FXML
+    protected Label player1Lose;
+
+    @FXML
     protected Label player2Score;
 
     @FXML
@@ -90,8 +102,8 @@ public class GameController {
         surrenderText.setTextFill(Color.rgb(255,31,69));
         surrenderButton.setStyle("-fx-background-color: white;-fx-background-radius: 2em;" );
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.15),surrenderButton);
-        scaleTransition.setToX(1.2);
         scaleTransition.setToY(1.2);
+        scaleTransition.setToX(1.2);
         scaleTransition.play();
     }
 
@@ -100,8 +112,8 @@ public class GameController {
         surrenderText.setTextFill(Color.WHITE);
         surrenderButton.setStyle("-fx-background-color:  #ff1f45;-fx-background-radius: 2em;");
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.15),surrenderButton);
-        scaleTransition.setToX(1);
         scaleTransition.setToY(1);
+        scaleTransition.setToX(1);
         scaleTransition.play();
     }
 
@@ -121,9 +133,13 @@ public class GameController {
 
     @FXML
     protected void clickSurrender() {
-        surrenderPopUp.display(turn,player1.getPlayerName(),player2.getPlayerName());
-        turn = false;
-        glowEffect();
+        if (turn == false) {
+            surrenderPopUp.display(player2name.getText());
+        } else {
+            surrenderPopUp.display(player1name.getText());
+        }
+        player1Score.setText("8");
+        player2Score.setText("8");
         reset();
     }
 
@@ -152,10 +168,8 @@ public class GameController {
     protected void enterPlayerName(ActionEvent event) {
         if(event.getSource() == inputName1) {
             player1name.setText(inputName1.getText());
-            player1.setPlayerName(inputName1.getText());
         } else {
             player2name.setText(inputName2.getText());
-            player2.setPlayerName(inputName2.getText());
         }
     }
     @FXML
@@ -384,7 +398,9 @@ public class GameController {
                         }
                     }
                 }
+
                 makeVay();
+
                 getBoard();
 
                 turn = !turn;
@@ -415,12 +431,25 @@ public class GameController {
 
         player1Score.setText(String.valueOf(n1));
         player2Score.setText(String.valueOf(n2));
-        if(n1 == 16) {
-            WinPopUp.display(true, player1.getPlayerName(), player2.getPlayerName());
-            turn =false;
-        } else if(n2 == 16) {
-            WinPopUp.display(false, player1.getPlayerName(), player2.getPlayerName());
-            turn =false;
+        if (n1 == 16) {
+            player1.win += 1;
+            player2.lose += 1;
+            player1Win.setText("Win: " + player1.win);
+            player2Lose.setText("Lose: " + player2.lose);
+            Win.display(player1name.getText());
+            player1Score.setText("8");
+            player2Score.setText("8");
+            reset();
+        }
+        if (n2 == 16) {
+            player2.win += 1;
+            player1.lose += 1;
+            player2Win.setText("Win: " + player2.win);
+            player1Lose.setText("Lose: " + player1.lose);
+            Win.display(player1name.getText());
+            player1Score.setText("8");
+            player2Score.setText("8");
+            reset();
         }
     }
 
