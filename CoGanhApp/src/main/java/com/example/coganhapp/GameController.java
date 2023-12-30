@@ -58,6 +58,11 @@ public class GameController {
     @FXML
     protected Label player2name;
 
+    @FXML
+    protected Label player1Score;
+
+    @FXML
+    protected Label player2Score;
 
     @FXML
     protected Piece[][] intersectionPoint = new Piece[5][5];
@@ -319,7 +324,6 @@ public class GameController {
                 }
                 intersectionPoint[row][column].setOpacity(1);
                 ///viet ham xem an  nhau nhu nao
-
                 switch (row) {
                     case 0, 4 -> {
                         switch (column) {
@@ -363,7 +367,6 @@ public class GameController {
                         }
                     }
                 }
-
 
                 turn = !turn;
                 glowEffect();
