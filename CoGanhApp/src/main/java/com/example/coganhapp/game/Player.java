@@ -7,7 +7,6 @@ import java.util.LinkedList;
 public class Player {
     private String playerName;
     private PlayerSide side;
-
     private int win;
     private int lose;
 
