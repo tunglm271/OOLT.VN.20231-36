@@ -1,5 +1,9 @@
 package com.example.coganhapp;
 
+import com.example.coganhapp.Move.Move;
+import com.example.coganhapp.Window.ExitDialog;
+import com.example.coganhapp.Window.WinPopUp;
+import com.example.coganhapp.Window.surrenderPopUp;
 import com.example.coganhapp.broad.Piece;
 import com.example.coganhapp.game.Player;
 import com.example.coganhapp.game.PlayerSide;
@@ -183,21 +187,8 @@ public class GameController {
 
     @FXML
     protected void clickUndo() {
-        for(int i = 0;i<5;i++) {
-            for(int j = 0;j<5;j++) {
-                if (undoList.get(undoList.size()-1)[i][j].getPlayer() != null) {
-                    intersectionPoint[i][j].setPlayer(undoList.get(undoList.size()-1)[i][j].getPlayer());
-                    intersectionPoint[i][j].setFill(undoList.get(undoList.size()-1)[i][j].getFill());
-                    intersectionPoint[i][j].setOpacity(1);
-                } else {
-                    intersectionPoint[i][j].setPlayer(null);
-                    intersectionPoint[i][j].setFill(Color.BLUE);
-                    intersectionPoint[i][j].setOpacity(0);
-                }
-            }
-        }
+        Move.Undo(undoList, intersectionPoint);
         turn = !turn;
-        undoList.remove(undoList.size()-1);
         glowEffect();
         getBoard();
     }
@@ -523,7 +514,7 @@ public class GameController {
             player2.lose += 1;
             player1Win.setText("Win: " + player1.win);
             player2Lose.setText("Lose: " + player2.lose);
-            Win.display(player1name.getText());
+            WinPopUp.display(player1name.getText());
             player1Score.setText("8");
             player2Score.setText("8");
             reset();
@@ -533,7 +524,7 @@ public class GameController {
             player1.lose += 1;
             player2Win.setText("Win: " + player2.win);
             player1Lose.setText("Lose: " + player1.lose);
-            Win.display(player1name.getText());
+            WinPopUp.display(player1name.getText());
             player1Score.setText("8");
             player2Score.setText("8");
             reset();
