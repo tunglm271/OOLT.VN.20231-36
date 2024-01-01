@@ -1,5 +1,8 @@
 package com.example.coganhapp.Window;
 
+import com.example.coganhapp.data.DataReader;
+import com.example.coganhapp.data.Result;
+import com.example.coganhapp.game.Player;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,7 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ExitDialog {
-    public static void display()
+    public static void display(Player player1, Player player2)
     {
         Stage popupwindow=new Stage();
 
@@ -23,7 +26,11 @@ public class ExitDialog {
 
         Button button1= new Button("YES !");
 
-        button1.setOnAction(e -> Platform.exit());
+        button1.setOnAction(e -> {
+            Result result = new Result(player1.getPlayerName(), player2.getPlayerName(), player1.win, player1.lose);
+            DataReader.getInstance().getHistory().add(result);
+            Platform.exit();
+        });
 
 
 

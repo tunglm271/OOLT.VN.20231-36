@@ -1,9 +1,9 @@
 package com.example.coganhapp;
 
+import com.example.coganhapp.data.DataReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -26,6 +26,19 @@ public class CoGanhApp extends Application {
 
     @Override
     public void init() throws Exception {
-        super.init();
+        try {
+            DataReader.getInstance().loadHistory();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void stop() throws Exception {
+        try {
+            DataReader.getInstance().storeHistory();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

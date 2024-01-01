@@ -9,4 +9,6 @@ module com.example.coganhapp {
     opens com.example.coganhapp.Move to javafx.fxml;
     exports com.example.coganhapp.Window;
     opens com.example.coganhapp.Window to javafx.fxml;
+    exports com.example.coganhapp.data;
+    opens com.example.coganhapp.data to javafx.fxml;
 }

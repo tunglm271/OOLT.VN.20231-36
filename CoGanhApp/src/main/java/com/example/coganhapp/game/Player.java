@@ -20,4 +20,8 @@ public class Player {
     public PlayerSide getSide() {
         return side;
     }
+
+    public String getPlayerName() {
+        return playerName;
+    }
 }

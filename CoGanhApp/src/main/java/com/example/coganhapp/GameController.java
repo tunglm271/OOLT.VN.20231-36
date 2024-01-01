@@ -45,7 +45,7 @@ public class GameController {
     private int tmpColumn;
     private int helpKernel = 0;
 
-    private int undoNumber = 0;
+    private int historyKernel = 0;
 
     private boolean checkNumber = true;
 
@@ -98,6 +98,12 @@ public class GameController {
 
     @FXML
     private HBox playBtn;
+
+    @FXML
+    private HBox helpButton;
+    @FXML
+    private HBox historyBtn;
+
 
     @FXML
     private VBox player1Card;
@@ -194,24 +200,41 @@ public class GameController {
     }
 
     @FXML
-    protected void clickHelpButton(MouseEvent event) throws IOException {
+    protected void clickOptionButton(MouseEvent event) throws IOException {
         if(event.getSource() == playBtn) {
             if(helpKernel == 1) {
                 ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
                 helpKernel = 0;
+            } else if(historyKernel == 1) {
+                ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
+                historyKernel = 0;
             }
-        } else {
+        } else if(event.getSource() == helpButton){
             if(helpKernel == 0) {
+                if (historyKernel == 1) {
+                    ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
+                    historyKernel = 0;
+                }
                 Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpUI.fxml")));
                 ancherRoot.getChildren().add(root);
                 helpKernel = 1;
+            }
+        } else {
+            if (historyKernel == 0) {
+                if (helpKernel == 1) {
+                    ancherRoot.getChildren().remove(ancherRoot.getChildren().size() - 1);
+                    helpKernel = 0;
+                }
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("history.fxml")));
+                ancherRoot.getChildren().add(root);
+                historyKernel = 1;
             }
         }
     }
 
     @FXML
     protected void clickExitButton() {
-        ExitDialog.display();
+        ExitDialog.display(player1,player2);
     }
 
     @FXML
