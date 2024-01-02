@@ -1,4 +1,4 @@
-package com.example.coganhapp;
+package com.example.coganhapp.Window;
 
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -19,21 +19,24 @@ public class surrenderPopUp {
 
         popupwindow.initModality(Modality.APPLICATION_MODAL);
         popupwindow.setTitle("Surrender");
-
+        popupwindow.initStyle(StageStyle.UNDECORATED);
         Label label1= new Label("You've surrendered !");
         label1.setFont(Font.font("Arial",FontWeight.BOLD,14));
         Label winnerText = new Label();
+        Button button1= new Button("OK !");
         if(winner == false) {
             winnerText.setText(player2 + " win!");
             winnerText.setFont(Font.font("Arial",FontWeight.BOLD,20));
             winnerText.setTextFill(Color.BLUE);
+            button1.setStyle("-fx-background-color: blue");
         } else {
             winnerText.setText(player1 + " win!");
             winnerText.setFont(Font.font("Arial",FontWeight.BOLD,20));
             winnerText.setTextFill(Color.RED);
+            button1.setStyle("-fx-background-color: red");
         }
-        Button button1= new Button("OK !");
-
+        button1.setTextFill(Color.WHITE);
+        button1.setFont(Font.font("Arial",FontWeight.BOLD,12));
         button1.setOnAction(e -> popupwindow.close());
 
 

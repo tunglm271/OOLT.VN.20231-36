@@ -1,8 +1,12 @@
 package com.example.coganhapp;
 
+import com.example.coganhapp.broad.Move;
+import com.example.coganhapp.Window.ExitDialog;
+import com.example.coganhapp.Window.WinPopUp;
+import com.example.coganhapp.Window.surrenderPopUp;
 import com.example.coganhapp.broad.Piece;
-import com.example.coganhapp.game.Player;
-import com.example.coganhapp.game.PlayerSide;
+import com.example.coganhapp.broad.Player;
+import com.example.coganhapp.broad.PlayerSide;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -41,11 +45,9 @@ public class GameController {
     private int tmpColumn;
     private int helpKernel = 0;
 
-    private int undoNumber = 0;
+    private int historyKernel = 0;
 
     private boolean checkNumber = true;
-
-    private Vector<Piece[][]> undoList= new Vector<>();
 
     @FXML
     private AnchorPane ancherRoot;
@@ -94,6 +96,12 @@ public class GameController {
 
     @FXML
     private HBox playBtn;
+
+    @FXML
+    private HBox helpButton;
+    @FXML
+    private HBox historyBtn;
+
 
     @FXML
     private VBox player1Card;
@@ -183,52 +191,58 @@ public class GameController {
 
     @FXML
     protected void clickUndo() {
-        for(int i = 0;i<5;i++) {
-            for(int j = 0;j<5;j++) {
-                if (undoList.get(undoList.size()-1)[i][j].getPlayer() != null) {
-                    intersectionPoint[i][j].setPlayer(undoList.get(undoList.size()-1)[i][j].getPlayer());
-                    intersectionPoint[i][j].setFill(undoList.get(undoList.size()-1)[i][j].getFill());
-                    intersectionPoint[i][j].setOpacity(1);
-                } else {
-                    intersectionPoint[i][j].setPlayer(null);
-                    intersectionPoint[i][j].setFill(Color.BLUE);
-                    intersectionPoint[i][j].setOpacity(0);
-                }
-            }
-        }
+        Move.Undo(Move.undoList, intersectionPoint);
         turn = !turn;
-        undoList.remove(undoList.size()-1);
         glowEffect();
         getBoard();
     }
 
     @FXML
-    protected void clickHelpButton(MouseEvent event) throws IOException {
+    protected void clickOptionButton(MouseEvent event) throws IOException {
         if(event.getSource() == playBtn) {
             if(helpKernel == 1) {
                 ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
                 helpKernel = 0;
+            } else if(historyKernel == 1) {
+                ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
+                historyKernel = 0;
             }
-        } else {
+        } else if(event.getSource() == helpButton){
             if(helpKernel == 0) {
+                if (historyKernel == 1) {
+                    ancherRoot.getChildren().remove(ancherRoot.getChildren().size()-1);
+                    historyKernel = 0;
+                }
                 Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpUI.fxml")));
                 ancherRoot.getChildren().add(root);
                 helpKernel = 1;
+            }
+        } else {
+            if (historyKernel == 0) {
+                if (helpKernel == 1) {
+                    ancherRoot.getChildren().remove(ancherRoot.getChildren().size() - 1);
+                    helpKernel = 0;
+                }
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("history.fxml")));
+                ancherRoot.getChildren().add(root);
+                historyKernel = 1;
             }
         }
     }
 
     @FXML
     protected void clickExitButton() {
-        ExitDialog.display();
+        ExitDialog.display(player1,player2);
     }
 
     @FXML
     protected void enterPlayerName(ActionEvent event) {
         if(event.getSource() == inputName1) {
             player1name.setText(inputName1.getText());
+            player1.setPlayerName(inputName1.getText());
         } else {
             player2name.setText(inputName2.getText());
+            player2.setPlayerName(inputName2.getText());
         }
     }
     @FXML
@@ -292,16 +306,10 @@ public class GameController {
                 }
             }
         }
-        if (checkNumber) {
-            undoList.add(tmp);
-            checkNumber = false;
-        } else {
-            checkNumber = true;
-        }
+        Move.undoList.add(tmp);
     }
 
     private void makeMove(int row, int column) {
-        copyintersectionPoint();
         if(kernel == 0) {
             if(intersectionPoint[row][column].getPlayer() != null) {
                 if ((turn && intersectionPoint[row][column].getPlayer() == player2) || (!turn && intersectionPoint[row][column].getPlayer() == player1)) {
@@ -432,6 +440,7 @@ public class GameController {
                 }
             }
         } else {
+            copyintersectionPoint();
             if(intersectionPoint[row][column].getOpacity() == 0.5) {
                 intersectionPoint[row][column].setPlayer(intersectionPoint[tmpRow][tmpColumn].getPlayer());
                 intersectionPoint[tmpRow][tmpColumn].setPlayer(null);
@@ -523,7 +532,7 @@ public class GameController {
             player2.lose += 1;
             player1Win.setText("Win: " + player1.win);
             player2Lose.setText("Lose: " + player2.lose);
-            Win.display(player1name.getText());
+            WinPopUp.display(player1name.getText());
             player1Score.setText("8");
             player2Score.setText("8");
             reset();
@@ -533,7 +542,7 @@ public class GameController {
             player1.lose += 1;
             player2Win.setText("Win: " + player2.win);
             player1Lose.setText("Lose: " + player1.lose);
-            Win.display(player1name.getText());
+            WinPopUp.display(player1name.getText());
             player1Score.setText("8");
             player2Score.setText("8");
             reset();

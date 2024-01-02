@@ -1,9 +1,6 @@
 package com.example.coganhapp.broad;
 
-import com.example.coganhapp.game.Player;
-import com.example.coganhapp.game.PlayerSide;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class Piece extends Circle {

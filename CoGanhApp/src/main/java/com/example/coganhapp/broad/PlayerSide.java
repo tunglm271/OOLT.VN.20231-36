@@ -1,4 +1,4 @@
-package com.example.coganhapp.game;
+package com.example.coganhapp.broad;
 
 public enum PlayerSide {
     RED,BLUE

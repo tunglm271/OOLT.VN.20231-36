@@ -23,7 +23,7 @@
             </Label>
             <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="97.0" prefHeight="257.0" prefWidth="107.0" spacing="20.0">
                <children>
-                  <HBox fx:id="playBtn" onMouseClicked="#clickHelpButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="61.0" prefWidth="107.0">
+                  <HBox fx:id="playBtn" onMouseClicked="#clickOptionButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="61.0" prefWidth="107.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -43,7 +43,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
-                  <HBox fx:id="helpButton" onMouseClicked="#clickHelpButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="50.0" prefWidth="107.0">
+                  <HBox fx:id="helpButton" onMouseClicked="#clickOptionButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="50.0" prefWidth="107.0">
                      <children>
                         <ImageView fitHeight="38.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
