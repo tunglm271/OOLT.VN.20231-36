@@ -1,4 +1,4 @@
-package com.example.coganhapp.Controller;
+package com.example.coganhapp;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

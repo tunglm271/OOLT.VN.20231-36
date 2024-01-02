@@ -1,4 +1,4 @@
-package com.example.coganhapp.Controller;
+package com.example.coganhapp;
 
 import com.example.coganhapp.Move.Move;
 import com.example.coganhapp.Window.ExitDialog;

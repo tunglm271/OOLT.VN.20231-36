@@ -1,4 +1,4 @@
-package com.example.coganhapp.Controller;
+package com.example.coganhapp;
 
 import com.example.coganhapp.data.DataReader;
 import com.example.coganhapp.data.Result;
