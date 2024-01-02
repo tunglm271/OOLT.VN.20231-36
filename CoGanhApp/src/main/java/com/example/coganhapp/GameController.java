@@ -1,6 +1,6 @@
 package com.example.coganhapp;
 
-import com.example.coganhapp.Move.Move;
+import com.example.coganhapp.broad.Move;
 import com.example.coganhapp.Window.ExitDialog;
 import com.example.coganhapp.Window.WinPopUp;
 import com.example.coganhapp.Window.surrenderPopUp;

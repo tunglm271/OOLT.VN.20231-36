@@ -1,4 +1,4 @@
-package com.example.coganhapp.Move;
+package com.example.coganhapp.broad;
 
 import com.example.coganhapp.broad.Piece;
 import javafx.scene.paint.Color;
