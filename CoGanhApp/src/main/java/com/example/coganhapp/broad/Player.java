@@ -1,8 +1,4 @@
-package com.example.coganhapp.game;
-
-import com.example.coganhapp.broad.Piece;
-
-import java.util.LinkedList;
+package com.example.coganhapp.broad;
 
 public class Player {
     private String playerName;

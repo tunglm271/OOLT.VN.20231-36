@@ -2,7 +2,7 @@ package com.example.coganhapp.Window;
 
 import com.example.coganhapp.data.DataReader;
 import com.example.coganhapp.data.Result;
-import com.example.coganhapp.game.Player;
+import com.example.coganhapp.broad.Player;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -48,4 +48,5 @@ public class ExitDialog {
         popupwindow.showAndWait();
 
     }
+
 }

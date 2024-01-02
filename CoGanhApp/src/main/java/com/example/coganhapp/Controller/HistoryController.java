@@ -1,9 +1,10 @@
-package com.example.coganhapp;
+package com.example.coganhapp.Controller;
 
 import com.example.coganhapp.data.DataReader;
 import com.example.coganhapp.data.Result;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +32,8 @@ public class HistoryController {
         firstPlayerScore.setCellValueFactory(new PropertyValueFactory<Result, Integer>("player1score"));
         secondPlayerScore.setCellValueFactory(new PropertyValueFactory<Result, Integer>("player2score"));
         historyTable.setItems(FXCollections.observableList(DataReader.getInstance().getHistory()));
+
+        historyTable.setPlaceholder(new Label("No match in history"));
     }
 
 

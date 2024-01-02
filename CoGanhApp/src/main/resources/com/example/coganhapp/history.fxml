@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="545.0" prefWidth="640.0" style="-fx-background-color: #5f43b2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.HistoryController">
+<AnchorPane prefHeight="545.0" prefWidth="640.0" style="-fx-background-color: #5f43b2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.Controller.HistoryController">
    <children>
       <TableView fx:id="historyTable" layoutX="10.0" layoutY="37.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="518.0" prefWidth="620.0" style="-fx-border-width: 3px;">
         <columns>
