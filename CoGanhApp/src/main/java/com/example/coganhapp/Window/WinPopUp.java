@@ -15,12 +15,11 @@ public class WinPopUp {
 
         popupwindow.initModality(Modality.APPLICATION_MODAL);
         popupwindow.setTitle("Win!");
-
+        popupwindow.initStyle(StageStyle.UNDECORATED);
         Label label1= new Label(playName + " win !");
         label1.setFont(Font.font("Arial",FontWeight.BOLD,14));
 
         Button button1= new Button("OK !");
-
         button1.setOnAction(e -> popupwindow.close());
 
 

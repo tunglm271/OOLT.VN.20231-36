@@ -241,8 +241,10 @@ public class GameController {
     protected void enterPlayerName(ActionEvent event) {
         if(event.getSource() == inputName1) {
             player1name.setText(inputName1.getText());
+            player1.setPlayerName(inputName1.getText());
         } else {
             player2name.setText(inputName2.getText());
+            player2.setPlayerName(inputName2.getText());
         }
     }
     @FXML
