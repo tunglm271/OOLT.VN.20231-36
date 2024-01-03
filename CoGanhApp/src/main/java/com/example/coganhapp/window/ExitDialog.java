@@ -1,8 +1,8 @@
-package com.example.coganhapp.Window;
+package com.example.coganhapp.window;
 
 import com.example.coganhapp.data.DataReader;
 import com.example.coganhapp.data.Result;
-import com.example.coganhapp.broad.Player;
+import com.example.coganhapp.game.Player;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -37,6 +37,7 @@ public class ExitDialog {
         button1.setFont(Font.font("Arial",FontWeight.BOLD,12));
         button1.setOnAction(e -> {
             Result result = new Result(player1.getPlayerName(), player2.getPlayerName(), player1.win, player1.lose);
+
             DataReader.getInstance().getHistory().add(result);
             Platform.exit();
         });

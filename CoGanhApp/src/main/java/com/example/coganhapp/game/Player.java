@@ -1,4 +1,4 @@
-package com.example.coganhapp.broad;
+package com.example.coganhapp.game;
 
 public class Player {
     private String playerName;

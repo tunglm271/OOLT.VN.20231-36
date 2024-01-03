@@ -1,12 +1,12 @@
 package com.example.coganhapp;
 
-import com.example.coganhapp.broad.Move;
-import com.example.coganhapp.Window.ExitDialog;
-import com.example.coganhapp.Window.WinPopUp;
-import com.example.coganhapp.Window.surrenderPopUp;
-import com.example.coganhapp.broad.Piece;
-import com.example.coganhapp.broad.Player;
-import com.example.coganhapp.broad.PlayerSide;
+import com.example.coganhapp.game.Move;
+import com.example.coganhapp.window.ExitDialog;
+import com.example.coganhapp.window.WinPopUp;
+import com.example.coganhapp.window.surrenderPopUp;
+import com.example.coganhapp.game.Piece;
+import com.example.coganhapp.game.Player;
+import com.example.coganhapp.game.PlayerSide;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;

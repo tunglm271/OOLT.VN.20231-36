@@ -1,4 +1,4 @@
-package com.example.coganhapp.broad;
+package com.example.coganhapp.game;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

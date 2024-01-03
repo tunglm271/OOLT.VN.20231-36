@@ -1,6 +1,5 @@
-package com.example.coganhapp.broad;
+package com.example.coganhapp.game;
 
-import com.example.coganhapp.broad.Piece;
 import javafx.scene.paint.Color;
 
 import java.util.Vector;

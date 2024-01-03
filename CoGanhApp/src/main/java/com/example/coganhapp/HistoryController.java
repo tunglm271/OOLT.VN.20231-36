@@ -32,7 +32,6 @@ public class HistoryController {
         firstPlayerScore.setCellValueFactory(new PropertyValueFactory<Result, Integer>("player1score"));
         secondPlayerScore.setCellValueFactory(new PropertyValueFactory<Result, Integer>("player2score"));
         historyTable.setItems(FXCollections.observableList(DataReader.getInstance().getHistory()));
-
         historyTable.setPlaceholder(new Label("No match in history"));
     }
 

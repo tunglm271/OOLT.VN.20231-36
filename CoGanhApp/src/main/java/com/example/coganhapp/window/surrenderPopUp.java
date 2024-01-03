@@ -1,4 +1,4 @@
-package com.example.coganhapp.Window;
+package com.example.coganhapp.window;
 
 import javafx.geometry.Pos;
 import javafx.scene.*;
