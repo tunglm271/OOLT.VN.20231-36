@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 import java.util.Vector;
 
 public class Move {
+    public static Vector<Piece[][]> undoList= new Vector<>();
+
     public static void Undo(Vector<Piece[][]> undoList, Piece[][] intersectionPoint) {
         if (undoList.size() != 0) {
             for(int i = 0;i<5;i++) {

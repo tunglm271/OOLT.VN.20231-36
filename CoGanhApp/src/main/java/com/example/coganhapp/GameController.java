@@ -49,8 +49,6 @@ public class GameController {
 
     private boolean checkNumber = true;
 
-    private Vector<Piece[][]> undoList= new Vector<>();
-
     @FXML
     private AnchorPane ancherRoot;
 
@@ -193,7 +191,7 @@ public class GameController {
 
     @FXML
     protected void clickUndo() {
-        Move.Undo(undoList, intersectionPoint);
+        Move.Undo(Move.undoList, intersectionPoint);
         turn = !turn;
         glowEffect();
         getBoard();
@@ -308,16 +306,10 @@ public class GameController {
                 }
             }
         }
-        if (checkNumber) {
-            undoList.add(tmp);
-            checkNumber = false;
-        } else {
-            checkNumber = true;
-        }
+        Move.undoList.add(tmp);
     }
 
     private void makeMove(int row, int column) {
-        copyintersectionPoint();
         if(kernel == 0) {
             if(intersectionPoint[row][column].getPlayer() != null) {
                 if ((turn && intersectionPoint[row][column].getPlayer() == player2) || (!turn && intersectionPoint[row][column].getPlayer() == player1)) {
@@ -448,6 +440,7 @@ public class GameController {
                 }
             }
         } else {
+            copyintersectionPoint();
             if(intersectionPoint[row][column].getOpacity() == 0.5) {
                 intersectionPoint[row][column].setPlayer(intersectionPoint[tmpRow][tmpColumn].getPlayer());
                 intersectionPoint[tmpRow][tmpColumn].setPlayer(null);
