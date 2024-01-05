@@ -499,39 +499,39 @@ public class GameController {
                     case 0 -> {
                         switch (column) {
                             case 0 -> {
-                                if (intersectionPoint[row][column+1] != null && intersectionPoint[row][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column+1].getPlayer() != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column+1);
-                                if (intersectionPoint[row+1][column] != null && intersectionPoint[row+1][column] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column);
-                                if (intersectionPoint[row+1][column+1] != null && intersectionPoint[row+1][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column+1].getPlayer() != null && intersectionPoint[row+1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column+1);
                             }
                             case 1, 3 -> {
-                                if (intersectionPoint[row+1][column] != null && intersectionPoint[row+1][column] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column);
-                                if (intersectionPoint[row][column-1] != null && intersectionPoint[row][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column-1);
-                                if (intersectionPoint[row][column+1] != null && intersectionPoint[row][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column+1].getPlayer() != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column+1);
                             }
                             case 2 -> {
-                                if (intersectionPoint[row+1][column] != null && intersectionPoint[row+1][column] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column);
-                                if (intersectionPoint[row][column-1] != null && intersectionPoint[row][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column-1);
-                                if (intersectionPoint[row][column+1] != null && intersectionPoint[row][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column+1] != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column+1);
-                                if (intersectionPoint[row+1][column+1] != null && intersectionPoint[row+1][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column+1] != null && intersectionPoint[row+1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column+1);
-                                if (intersectionPoint[row+1][column-1] != null && intersectionPoint[row+1][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column-1].getPlayer() != null && intersectionPoint[row+1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column-1);
                             }
                             case 4 -> {
-                                if (intersectionPoint[row+1][column] != null && intersectionPoint[row+1][column] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column);
-                                if (intersectionPoint[row+1][column-1] != null && intersectionPoint[row+1][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column-1].getPlayer() != null && intersectionPoint[row+1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column-1);
-                                if (intersectionPoint[row][column-1] != null && intersectionPoint[row][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column-1);
                             }
                         }
@@ -545,21 +545,21 @@ public class GameController {
                                 isSurround(row, column+1);
                             }
                             case 1, 3 -> {
-                                if(intersectionPoint[row-1][column] != null && intersectionPoint[row-1][column] != intersectionPoint[row][column])
+                                if(intersectionPoint[row-1][column].getPlayer() != null && intersectionPoint[row-1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row-1, column);
-                                if (intersectionPoint[row+1][column] != null && intersectionPoint[row+1][column] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column);
-                                if (intersectionPoint[row][column+1] != null && intersectionPoint[row][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column+1].getPlayer() != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column+1);
-                                if (intersectionPoint[row][column-1] != null && intersectionPoint[row][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row, column-1);
-                                if (intersectionPoint[row-1][column-1] != null && intersectionPoint[row-1][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row-1][column-1].getPlayer() != null && intersectionPoint[row-1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row-1, column-1);
-                                if (intersectionPoint[row+1][column+1] != null && intersectionPoint[row+1][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column+1].getPlayer() != null && intersectionPoint[row+1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column+1);
-                                if (intersectionPoint[row+1][column-1] != null && intersectionPoint[row+1][column-1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row+1][column-1].getPlayer() != null && intersectionPoint[row+1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row+1, column-1);
-                                if (intersectionPoint[row-1][column+1] != null && intersectionPoint[row-1][column+1] != intersectionPoint[row][column])
+                                if (intersectionPoint[row-1][column+1].getPlayer() != null && intersectionPoint[row-1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
                                     isSurround(row-1, column+1);
                             }
                             case 2 -> {
