@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.GameController">
+   <children>
+      <AnchorPane fx:id="menuPane" layoutY="78.0" prefHeight="467.0" prefWidth="150.0" style="-fx-background-color: #5f43b2; -fx-background-radius: 0 5em 0  0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0);">
+         <children>
+            <Line endX="73.5" endY="-0.2078857421875" layoutX="76.0" layoutY="355.0" startX="-76.0" startY="-0.2078857421875" stroke="WHITE" />
+            <Label alignment="CENTER" layoutX="11.0" layoutY="41.0" prefHeight="35.0" prefWidth="128.0" style="-fx-background-color: #fefdfd; -fx-background-radius: 1em;" text="Menu" textFill="#3a315a">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="97.0" prefHeight="257.0" prefWidth="107.0" spacing="20.0">
+               <children>
+                  <HBox fx:id="playBtn" onMouseClicked="#clickOptionButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="61.0" prefWidth="107.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@media/icons8-game-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="51.0" prefWidth="78.0" text="Play" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="helpButton" onMouseClicked="#clickOptionButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="50.0" prefWidth="107.0">
+                     <children>
+                        <ImageView fitHeight="38.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@media/icons8-question-90.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="43.0" prefWidth="73.0" text="Help" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="exitBtn" onMouseClicked="#clickExitButton" onMouseEntered="#menuButtonEnterEffect" onMouseExited="#menuButtonLeaveEffect" prefHeight="46.0" prefWidth="107.0">
+                     <children>
+                        <ImageView fitHeight="37.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@media/icons8-exit-90.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="3.0" top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="70.0" text="Exit" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="10.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@media/icons8-woman-96.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="inputName1" layoutX="45.0" layoutY="380.0" onAction="#enterPlayerName" prefHeight="22.0" prefWidth="96.0" text="Player 1" />
+            <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="10.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@media/icons8-man-96.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="inputName2" layoutX="45.0" layoutY="417.0" onAction="#enterPlayerName" prefHeight="22.0" prefWidth="96.0" text="Player 2" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="78.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@media/appicon.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="ancherRoot" layoutX="159.0" layoutY="-7.0" prefHeight="545.0" prefWidth="640.0">
+         <children>
+            <AnchorPane id="AppWall" fx:id="gameBroad" layoutX="146.0" layoutY="3.0" prefHeight="552.0" prefWidth="494.0" style="-fx-background-radius: 0 0 0 4em;">
+               <children>
+                  <ImageView fitHeight="328.0" fitWidth="339.0" layoutX="75.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/gamebroad.png" />
+                     </image>
+                  </ImageView>
+                  <HBox fx:id="surrenderButton" alignment="CENTER_LEFT" layoutX="160.0" layoutY="462.0" onMouseClicked="#clickSurrender" onMouseEntered="#mouseEnterEffect" onMouseExited="#mouseLeaveEffect" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ff1f45; -fx-background-radius: 2em;">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@media/icons8-give-up-64.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="surrenderText" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="79.0" text="Surrender" textFill="#fff7f7">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="202.0" layoutY="25.0" prefHeight="55.0" prefWidth="96.0">
+                     <children>
+                        <Label text="8" textFill="#ff0808">
+                           <font>
+                              <Font name="System Bold" size="38.0" />
+                           </font>
+                        </Label>
+                        <Label text=" - " textFill="#f7f7f7">
+                           <font>
+                              <Font name="System Bold" size="38.0" />
+                           </font>
+                        </Label>
+                        <Label text="8" textFill="#4164ff">
+                           <font>
+                              <Font name="System Bold" size="38.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <VBox fx:id="player1Card" alignment="TOP_CENTER" layoutX="19.0" layoutY="156.0" prefHeight="82.0" prefWidth="100.0" style="-fx-background-color: #b1aebb; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/icons8-woman-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player1name" text="Player 1">
+                     <font>
+                        <Font name="Segoe UI Black Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label text="Win: 0" />
+                  <Label text="lose: 0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="player2Card" alignment="TOP_CENTER" layoutX="19.0" layoutY="331.0" prefHeight="82.0" prefWidth="100.0" style="-fx-background-color: #b1aebb; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/icons8-man-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player2name" text="Player 2">
+                     <font>
+                        <Font name="Segoe UI Black Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label text="Win: 0" />
+                  <Label text="Lose: 0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
