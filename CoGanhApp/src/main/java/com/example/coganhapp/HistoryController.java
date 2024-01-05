@@ -23,7 +23,6 @@ public class HistoryController {
     private TableColumn<Result, Integer> firstPlayerScore;
     @FXML
     private TableColumn<Result, Integer> secondPlayerScore;
-    private LinkedList<Result> historyList = new LinkedList<Result>();
 
     @FXML
     public  void initialize() {

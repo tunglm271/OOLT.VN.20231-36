@@ -65,3 +65,8 @@
 .table-view .virtual-flow .scroll-bar:horizontal .track-background {
     -fx-background-color: transparent;
 }
+.text-area,
+.text-area .content {
+    -fx-shape: "M 7 0 L 24 0 L 24 19 L 0 19 L 0 2 L 7 2 Z";
+    -fx-font-weight: BOLD;
+}

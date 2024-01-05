@@ -20,7 +20,7 @@ import javafx.stage.StageStyle;
 public class ExitDialog {
     public static void display(Player player1, Player player2)
     {
-        Stage popupwindow=new Stage();
+        Stage popupwindow =new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
         popupwindow.setTitle("Exit");
         popupwindow.initStyle(StageStyle.UNDECORATED);
@@ -39,6 +39,7 @@ public class ExitDialog {
             Result result = new Result(player1.getPlayerName(), player2.getPlayerName(), player1.win, player1.lose);
 
             DataReader.getInstance().getHistory().add(result);
+            popupwindow.close();
             Platform.exit();
         });
         button2.setOnAction(e -> {

@@ -27,7 +27,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Vector;
 
 public class GameController {
 
@@ -708,7 +707,155 @@ public class GameController {
         turn = false;
         glowEffect();
     }
+    void isSurround(int row, int column) {
+        int[][] visited = new int[5][5];
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                visited[i][j] = 0;
+            }
+        }
+        if(dfs(row, column,intersectionPoint[row][column].getPlayer(),visited)) {
+                //do something
+        };
+    }
 
+    protected boolean dfs(int row , int column, Player player, int[][] visited) {
+        if(visited[row][column] == 1) return true;
+        if (intersectionPoint[row][column].getPlayer() == null && visited[row][column] == 0) {
+            visited[row][column] = 1;
+            return false;
+        }
 
+        if (intersectionPoint[row][column].getPlayer() != player && visited[row][column] == 0) {
+            visited[row][column] = 1;
+            return true;
+        }
+
+        if (intersectionPoint[row][column].getPlayer() == player && visited[row][column] == 0) {
+            visited[row][column] = 1;
+            switch (row) {
+                case 0 -> {
+                    switch (column) {
+                        case 0 -> {
+                            return dfs(row,column +1,player,visited) ||
+                                    dfs(row +1,column,player,visited) ||
+                                    dfs(row +1,column +1,player,visited);
+                        }
+                        case 1, 3 -> {
+                            return dfs(row+1,column,player,visited) ||
+                                    dfs(row,column - 1,player,visited) ||
+                                    dfs(row ,column +1,player,visited);
+                        }
+                        case 2 -> {
+                            return dfs(row +1 ,column ,player,visited) ||
+                            dfs(row,column -1,player,visited) ||
+                            dfs(row,column+1,player,visited) ||
+                            dfs(row +1 , column +1,player,visited) ||
+                            dfs(row+1,column-1,player,visited);
+                        }
+                        case 4 -> {
+                            return dfs(row+1,column,player,visited) ||
+                                    dfs(row +1 ,column - 1,player,visited) ||
+                                    dfs(row ,column - 1,player,visited);
+                        }
+                    }
+                }
+
+                case 1, 3 -> {
+                    switch (column) {
+                        case 0 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                        }
+                        case 1, 3 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                            fade(intersectionPoint[row - 1][column - 1], color);
+                            fade(intersectionPoint[row + 1][column + 1], color);
+                            fade(intersectionPoint[row + 1][column - 1], color);
+                            fade(intersectionPoint[row - 1][column + 1], color);
+                        }
+                        case 2 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                        }
+
+                        case 4 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                        }
+                    }
+                }
+                case 2 -> {
+                    switch (column) {
+                        case 0 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                            fade(intersectionPoint[row - 1][column + 1], color);
+                            fade(intersectionPoint[row + 1][column + 1], color);
+                        }
+                        case 1, 3 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                        }
+                        case 2 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                            fade(intersectionPoint[row - 1][column - 1], color);
+                            fade(intersectionPoint[row + 1][column + 1], color);
+                            fade(intersectionPoint[row + 1][column - 1], color);
+                            fade(intersectionPoint[row - 1][column + 1], color);
+                        }
+                        case 4 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row + 1][column], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                            fade(intersectionPoint[row - 1][column - 1], color);
+                            fade(intersectionPoint[row + 1][column - 1], color);
+                        }
+                    }
+                }
+                case 4 -> {
+                    switch (column) {
+                        case 0 -> {
+                            fade(intersectionPoint[row][column + 1], color);
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row - 1][column + 1], color);
+                        }
+                        case 1, 3 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                        }
+                        case 2 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                            fade(intersectionPoint[row][column + 1], color);
+                            fade(intersectionPoint[row - 1][column + 1], color);
+                            fade(intersectionPoint[row - 1][column - 1], color);
+                        }
+                        case 4 -> {
+                            fade(intersectionPoint[row - 1][column], color);
+                            fade(intersectionPoint[row - 1][column - 1], color);
+                            fade(intersectionPoint[row][column - 1], color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    }
 
 }
