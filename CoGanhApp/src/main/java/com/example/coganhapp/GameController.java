@@ -449,7 +449,7 @@ public class GameController {
                     intersectionPoint[row][column].setFill(Color.BLUE);
                 }
                 intersectionPoint[row][column].setOpacity(1);
-                ///viet ham xem an  nhau nhu nao
+
                 switch (row) {
                     case 0, 4 -> {
                         switch (column) {
@@ -494,146 +494,10 @@ public class GameController {
                     }
                 }
 
-                // ham vay
-                switch (row) {
-                    case 0 -> {
-                        switch (column) {
-                            case 0 -> {
-                                if (intersectionPoint[row][column+1].getPlayer() != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column+1);
-                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column);
-                                if (intersectionPoint[row+1][column+1].getPlayer() != null && intersectionPoint[row+1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column+1);
-                            }
-                            case 1, 3 -> {
-                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column);
-                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column-1);
-                                if (intersectionPoint[row][column+1].getPlayer() != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column+1);
-                            }
-                            case 2 -> {
-                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column);
-                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column-1);
-                                if (intersectionPoint[row][column+1] != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column+1);
-                                if (intersectionPoint[row+1][column+1] != null && intersectionPoint[row+1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column+1);
-                                if (intersectionPoint[row+1][column-1].getPlayer() != null && intersectionPoint[row+1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column-1);
-                            }
-                            case 4 -> {
-                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column);
-                                if (intersectionPoint[row+1][column-1].getPlayer() != null && intersectionPoint[row+1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column-1);
-                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column-1);
-                            }
-                        }
-                    }
-
-                    case 1, 3 -> {
-                        switch (column) {
-                            case 0 -> {
-                                isSurround(row-1, column);
-                                isSurround(row+1, column);
-                                isSurround(row, column+1);
-                            }
-                            case 1, 3 -> {
-                                if(intersectionPoint[row-1][column].getPlayer() != null && intersectionPoint[row-1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row-1, column);
-                                if (intersectionPoint[row+1][column].getPlayer() != null && intersectionPoint[row+1][column].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column);
-                                if (intersectionPoint[row][column+1].getPlayer() != null && intersectionPoint[row][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column+1);
-                                if (intersectionPoint[row][column-1].getPlayer() != null && intersectionPoint[row][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row, column-1);
-                                if (intersectionPoint[row-1][column-1].getPlayer() != null && intersectionPoint[row-1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row-1, column-1);
-                                if (intersectionPoint[row+1][column+1].getPlayer() != null && intersectionPoint[row+1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column+1);
-                                if (intersectionPoint[row+1][column-1].getPlayer() != null && intersectionPoint[row+1][column-1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row+1, column-1);
-                                if (intersectionPoint[row-1][column+1].getPlayer() != null && intersectionPoint[row-1][column+1].getPlayer() != intersectionPoint[row][column].getPlayer())
-                                    isSurround(row-1, column+1);
-                            }
-                            case 2 -> {
-                                isSurround(row-1, column);
-                                isSurround(row+1, column);
-                                isSurround(row, column+1);
-                                isSurround(row, column-1);
-                            }
-
-                            case 4 -> {
-                                isSurround(row-1, column);
-                                isSurround(row+1, column);
-                                isSurround(row, column-1);
-                            }
-                        }
-                    }
-                    case 2 -> {
-                        switch (column) {
-                            case 0 -> {
-                                isSurround(row-1, column);
-                                isSurround(row+1, column);
-                                isSurround(row, column+1);
-                                isSurround(row-1, column+1);
-                                isSurround(row+1, column+1);
-                            }
-                            case 1, 3 -> {
-                                isSurround(row-1, column);
-                                isSurround(row+1, column);
-                                isSurround(row, column+1);
-                                isSurround(row, column-1);
-                            }
-                            case 2 -> {
-                                isSurround(row-1, column);
-                                isSurround(row+1, column);
-                                isSurround(row, column+1);
-                                isSurround(row, column-1);
-                                isSurround(row-1, column-1);
-                                isSurround(row+1, column+1);
-                                isSurround(row+1, column-1);
-                                isSurround(row-1, column+1);
-                            }
-                            case 4 -> {
-                                isSurround(row-1, column);
-                                isSurround(row+1, column);
-                                isSurround(row, column-1);
-                                isSurround(row-1, column-1);
-                                isSurround(row+1, column-1);
-                            }
-                        }
-                    }
-                    case 4 -> {
-                        switch (column) {
-                            case 0 -> {
-                                isSurround(row, column+1);
-                                isSurround(row-1, column);
-                                isSurround(row-1, column+1);
-                            }
-                            case 1, 3 -> {
-                                isSurround(row-1, column);
-                                isSurround(row, column -1);
-                                isSurround(row, column+1);
-                            }
-                            case 2 -> {
-                                isSurround(row-1, column);
-                                isSurround(row, column-1);
-                                isSurround(row, column+1);
-                                isSurround(row-1, column+1);
-                                isSurround(row-1, column-1);
-                            }
-                            case 4 -> {
-                                isSurround(row-1, column);
-                                isSurround(row-1, column-1);
-                                isSurround(row, column-1);
-                            }
+                for(int i = 0;i<5;i++) {
+                    for (int j = 0;j<5;j++) {
+                        if(intersectionPoint[i][j].getPlayer() != null) {
+                            isSurround(i,j);
                         }
                     }
                 }
@@ -657,128 +521,7 @@ public class GameController {
 
     }
 
-    protected void makeVay(int row, int column) {
-        switch (row) {
-            case 0 -> {
-                switch (column) {
-                    case 0 -> {
-                        isSurround(row, column+1);
-                        isSurround(row+1, column);
-                        isSurround(row+1, column+1);
-                    }
-                    case 1, 3 -> {
-                        isSurround(row+1, column);
-                        isSurround(row, column-1);
-                        isSurround(row, column+1);
-                    }
-                    case 2 -> {
-                        isSurround(row+1, column);
-                        isSurround(row, column-1);
-                        isSurround(row, column+1);
-                        isSurround(row+1, column+1);
-                        isSurround(row+1, column-1);
-                    }
-                    case 4 -> {
-                        isSurround(row+1, column);
-                        isSurround(row+1, column-1);
-                        isSurround(row, column-1);
-                    }
-                }
-            }
 
-            case 1, 3 -> {
-                switch (column) {
-                    case 0 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column+1);
-                    }
-                    case 1, 3 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column+1);
-                        isSurround(row, column-1);
-                        isSurround(row-1, column-1);
-                        isSurround(row+1, column+1);
-                        isSurround(row+1, column-1);
-                        isSurround(row-1, column+1);
-                    }
-                    case 2 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column+1);
-                        isSurround(row, column-1);
-                    }
-
-                    case 4 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column-1);
-                    }
-                }
-            }
-            case 2 -> {
-                switch (column) {
-                    case 0 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column+1);
-                        isSurround(row-1, column+1);
-                        isSurround(row+1, column+1);
-                    }
-                    case 1, 3 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column+1);
-                        isSurround(row, column-1);
-                    }
-                    case 2 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column+1);
-                        isSurround(row, column-1);
-                        isSurround(row-1, column-1);
-                        isSurround(row+1, column+1);
-                        isSurround(row+1, column-1);
-                        isSurround(row-1, column+1);
-                    }
-                    case 4 -> {
-                        isSurround(row-1, column);
-                        isSurround(row+1, column);
-                        isSurround(row, column-1);
-                        isSurround(row-1, column-1);
-                        isSurround(row+1, column-1);
-                    }
-                }
-            }
-            case 4 -> {
-                switch (column) {
-                    case 0 -> {
-                        isSurround(row, column+1);
-                        isSurround(row-1, column);
-                        isSurround(row-1, column+1);
-                    }
-                    case 1, 3 -> {
-                        isSurround(row-1, column);
-                        isSurround(row, column -1);
-                        isSurround(row, column+1);
-                    }
-                    case 2 -> {
-                        isSurround(row-1, column);
-                        isSurround(row, column-1);
-                        isSurround(row, column+1);
-                        isSurround(row-1, column+1);
-                        isSurround(row-1, column-1);
-                    }
-                    case 4 -> {
-                        isSurround(row-1, column);
-                        isSurround(row-1, column-1);
-                        isSurround(row, column-1);
-                    }
-                }
-            }
-        }
-    }
     protected void getBoard() {
         n1 = 0; n2 = 0;
         for (int i = 0; i < 5; i++) {
@@ -813,25 +556,7 @@ public class GameController {
             reset();
         }
     }
-    protected boolean checkVay(int i, int j, int m, int n) {
-        if (intersectionPoint[m][n].getPlayer() == null)
-            return false;
-        if (intersectionPoint[i][j].getPlayer() != intersectionPoint[m][n].getPlayer())
-            return true;
-        return false;
-    }
 
-    protected void changeColor(Piece piece) {
-        if (piece.getPlayer().getSide() == PlayerSide.RED) {
-            piece.setFill(Color.BLUE);
-            piece.setPlayer(player2);
-            piece.setOpacity(1);
-        } else if (piece.getPlayer().getSide() == PlayerSide.BLUE) {
-            piece.setFill(Color.RED);
-            piece.setPlayer(player1);
-            piece.setOpacity(1);
-        }
-    }
 
     protected void makeGanh(Piece piece1, Piece piece2, Piece piece3) {
         if (piece1.getPlayer() != piece2.getPlayer() && piece1.getPlayer() != piece3.getPlayer() && piece2.getPlayer() != null && piece3.getPlayer() != null) {
@@ -882,7 +607,13 @@ public class GameController {
         glowEffect();
     }
     void isSurround(int row, int column) {
-        if (dfs(row, column, intersectionPoint[row][column].getPlayer())) {
+        int[][] visited = new int[5][5];
+        for (int i = 0;i< 5;i++) {
+            for (int j = 0;j < 5;j++) {
+                visited[i][j] = 0;
+            }
+        }
+        if (dfs(row, column, intersectionPoint[row][column].getPlayer(),visited)) {
             if (intersectionPoint[row][column].getPlayer().getSide() == PlayerSide.RED) {
                 intersectionPoint[row][column].setFill(Color.BLUE);
                 intersectionPoint[row][column].setPlayer(player2);
@@ -895,129 +626,134 @@ public class GameController {
         }
     }
 
-    protected boolean dfs(int row , int column, Player player) {
+    protected boolean dfs(int row , int column, Player player, int[][] visited) {
+        if(visited[row][column] == 1) return true;
+
         if (intersectionPoint[row][column].getPlayer() == null) {
             return false;
         }
+
         boolean myCheck = false;
         if (intersectionPoint[row][column].getPlayer() != player) {
-            myCheck = true;
+            visited[row][column] = 1;
             return true;
-        } else if (intersectionPoint[row][column].getPlayer() == player) {
+        }
+        if (intersectionPoint[row][column].getPlayer() == player) {
+            visited[row][column] = 1;
             switch (row) {
                 case 0 -> {
                     switch (column) {
                         case 0 -> {
-                            return dfs(row,column +1,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row +1,column +1,player);
+                            myCheck = dfs(row,column +1,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row +1,column +1,player,visited);
                         }
                         case 1, 3 -> {
-                            return dfs(row+1,column,player) ||
-                                    dfs(row,column - 1,player) ||
-                                    dfs(row ,column +1,player);
+                            myCheck = dfs(row+1,column,player,visited) &&
+                                    dfs(row,column - 1,player,visited) &&
+                                    dfs(row ,column +1,player,visited);
                         }
                         case 2 -> {
-                            return dfs(row +1 ,column ,player) ||
-                            dfs(row,column -1,player) ||
-                            dfs(row,column+1,player) ||
-                            dfs(row +1 , column +1,player) ||
-                            dfs(row+1,column-1,player);
+                            myCheck = dfs(row +1 ,column ,player,visited) &&
+                            dfs(row,column -1,player,visited) &&
+                            dfs(row,column+1,player,visited) &&
+                            dfs(row +1 , column +1,player,visited) &&
+                            dfs(row+1,column-1,player,visited);
                         }
                         case 4 -> {
-                            return dfs(row+1,column,player) ||
-                                    dfs(row +1 ,column - 1,player) ||
-                                    dfs(row ,column - 1,player);
+                            myCheck = dfs(row+1,column,player,visited) &&
+                                    dfs(row +1 ,column - 1,player,visited) &&
+                                    dfs(row ,column - 1,player,visited);
                         }
                     }
                 }
                 case 1, 3 -> {
                     switch (column) {
                         case 0 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column +1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited);
                         }
                         case 1, 3 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column +1,player) ||
-                                    dfs(row,column -1,player) ||
-                                    dfs(row-1,column -1,player) ||
-                                    dfs(row+1,column +1,player) ||
-                                    dfs(row+1,column -1,player) ||
-                                    dfs(row-1,column +1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited) &&
+                                    dfs(row,column -1,player,visited) &&
+                                    dfs(row-1,column -1,player,visited) &&
+                                    dfs(row+1,column +1,player,visited) &&
+                                    dfs(row+1,column -1,player,visited) &&
+                                    dfs(row-1,column +1,player,visited);
                         }
                         case 2 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column +1,player)||
-                                    dfs(row,column -1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited) &&
+                                    dfs(row,column -1,player,visited);
                         }
                         case 4 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column -1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column -1,player,visited);
                         }
                     }
                 }
                 case 2 -> {
                     switch (column) {
                         case 0 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column +1,player)||
-                                    dfs(row+1,column +1,player)||
-                                    dfs(row-1,column +1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited)&&
+                                    dfs(row+1,column +1,player,visited) &&
+                                    dfs(row-1,column +1,player,visited);
                         }
                         case 1, 3 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column +1,player)||
-                                    dfs(row,column -1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited) &&
+                                    dfs(row,column -1,player,visited);
                         }
                         case 2 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column +1,player) ||
-                                    dfs(row,column -1,player) ||
-                                    dfs(row-1,column -1,player) ||
-                                    dfs(row+1,column +1,player) ||
-                                    dfs(row+1,column -1,player) ||
-                                    dfs(row-1,column +1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited) &&
+                                    dfs(row,column -1,player,visited) &&
+                                    dfs(row-1,column -1,player,visited) &&
+                                    dfs(row+1,column +1,player,visited) &&
+                                    dfs(row+1,column -1,player,visited) &&
+                                    dfs(row-1,column +1,player,visited);
                         }
                         case 4 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row +1,column,player) ||
-                                    dfs(row,column -1,player)||
-                                    dfs(row-1,column -1,player)||
-                                    dfs(row+1,column -1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row +1,column,player,visited) &&
+                                    dfs(row,column -1,player,visited) &&
+                                    dfs(row-1,column -1,player,visited) &&
+                                    dfs(row+1,column -1,player,visited);
                         }
                     }
                 }
                 case 4 -> {
                     switch (column) {
                         case 0 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row,column+1,player) ||
-                                    dfs(row-1,column +1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row,column+1,player,visited) &&
+                                    dfs(row-1,column +1,player,visited);
                         }
                         case 1, 3 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row,column +1,player)||
-                                    dfs(row,column -1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited) &&
+                                    dfs(row,column -1,player,visited);
                         }
                         case 2 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row,column +1,player)||
-                                    dfs(row,column -1,player)||
-                                    dfs(row-1,column -1,player)||
-                                    dfs(row-1,column +1,player);
+                             myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row,column +1,player,visited) &&
+                                    dfs(row,column -1,player,visited) &&
+                                    dfs(row-1,column -1,player,visited) &&
+                                    dfs(row-1,column +1,player,visited);
                         }
                         case 4 -> {
-                            return dfs(row-1,column,player) ||
-                                    dfs(row,column-1,player) ||
-                                    dfs(row-1,column -1,player);
+                            myCheck = dfs(row-1,column,player,visited) &&
+                                    dfs(row,column-1,player,visited) &&
+                                    dfs(row-1,column -1,player,visited);
                         }
                     }
                 }
