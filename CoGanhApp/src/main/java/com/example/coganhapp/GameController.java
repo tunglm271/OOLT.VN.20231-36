@@ -30,8 +30,8 @@ import java.util.Objects;
 
 public class GameController {
 
-    private Player player1 = new Player("Player 1", PlayerSide.RED,0,0);
-    private Player player2 = new Player("Player 2", PlayerSide.BLUE,0,0);
+    private Player player1 = new Player("Player 1", PlayerSide.RED, 0, 0);
+    private Player player2 = new Player("Player 2", PlayerSide.BLUE);
 
     private int n1 = 8, n2 = 8;
 
