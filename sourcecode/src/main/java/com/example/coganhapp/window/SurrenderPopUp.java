@@ -10,11 +10,20 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.*;
 
 
-public class surrenderPopUp {
+public class SurrenderPopUp implements Displayable{
 
+    private boolean winner;
+    private String player1;
+    private String player2;
 
-    public static void display(boolean winner, String player1 , String player2)
-    {
+    public SurrenderPopUp(boolean winner, String player1, String player2) {
+        this.winner = winner;
+        this.player1 = player1;
+        this.player2 = player2;
+    }
+
+    @Override
+    public void display() {
         Stage popupwindow=new Stage();
 
         popupwindow.initModality(Modality.APPLICATION_MODAL);

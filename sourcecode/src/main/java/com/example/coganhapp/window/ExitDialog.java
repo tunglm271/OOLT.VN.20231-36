@@ -17,8 +17,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ExitDialog {
-    public static void display(Player player1, Player player2)
+public class ExitDialog implements Displayable{
+
+    private Player player1;
+    private Player player2;
+    public ExitDialog(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+    }
+    @Override
+    public void display()
     {
         Stage popupwindow =new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);

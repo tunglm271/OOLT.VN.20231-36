@@ -8,15 +8,22 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.*;
 
-public class WinPopUp {
-    public static void display(String playName)
+public class WinPopUp implements Displayable {
+    private String playerName;
+
+    public WinPopUp(String playerName) {
+        this.playerName = playerName;
+    }
+
+    @Override
+    public void display()
     {
         Stage popupwindow =new Stage();
 
         popupwindow.initModality(Modality.APPLICATION_MODAL);
         popupwindow.setTitle("Win!");
         popupwindow.initStyle(StageStyle.UNDECORATED);
-        Label label1= new Label(playName + " win !");
+        Label label1= new Label(playerName + " win !");
         label1.setFont(Font.font("Arial",FontWeight.BOLD,14));
 
         Button button1= new Button("OK !");

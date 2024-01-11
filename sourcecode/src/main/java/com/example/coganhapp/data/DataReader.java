@@ -17,6 +17,8 @@ public class DataReader {
 
     private List<Result> historyData;
 
+    private DataReader() {}
+
     public static DataReader getInstance() {
         return instance;
     }

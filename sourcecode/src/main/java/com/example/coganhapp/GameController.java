@@ -1,9 +1,10 @@
 package com.example.coganhapp;
 
 import com.example.coganhapp.game.Move;
+import com.example.coganhapp.window.Displayable;
 import com.example.coganhapp.window.ExitDialog;
 import com.example.coganhapp.window.WinPopUp;
-import com.example.coganhapp.window.surrenderPopUp;
+import com.example.coganhapp.window.SurrenderPopUp;
 import com.example.coganhapp.game.Piece;
 import com.example.coganhapp.game.Player;
 import com.example.coganhapp.game.PlayerSide;
@@ -30,8 +31,8 @@ import java.util.Objects;
 
 public class GameController {
 
-    private Player player1 = new Player("Player 1", PlayerSide.RED,0,0);
-    private Player player2 = new Player("Player 2", PlayerSide.BLUE,0,0);
+    private final Player player1 = new Player("Player 1", PlayerSide.RED,0,0);
+    private final Player player2 = new Player("Player 2", PlayerSide.BLUE);
 
     private int n1 = 8, n2 = 8;
 
@@ -68,7 +69,6 @@ public class GameController {
 
     @FXML
     protected Label player1Score;
-
     @FXML
     protected Label player1Win;
 
@@ -83,6 +83,7 @@ public class GameController {
 
     @FXML
     protected Label player2Score;
+
 
     @FXML
     protected Piece[][] intersectionPoint = new Piece[5][5];
@@ -111,6 +112,8 @@ public class GameController {
     private HBox undoBtn;
     @FXML
     private Label undoText;
+
+    Displayable appDialog;
 
     @FXML
     protected void undoEnterEffect() {
@@ -170,7 +173,8 @@ public class GameController {
 
     @FXML
     protected void clickSurrender() {
-        surrenderPopUp.display(turn,player1name.getText(), player2name.getText());
+        appDialog = new SurrenderPopUp(turn,player1name.getText(), player2name.getText());
+        appDialog.display();
         if (turn) {
             player1.win += 1;
             player2.lose += 1;
@@ -231,7 +235,8 @@ public class GameController {
 
     @FXML
     protected void clickExitButton() {
-        ExitDialog.display(player1,player2);
+        appDialog = new ExitDialog(player1,player2);
+        appDialog.display();
     }
 
     @FXML
@@ -555,7 +560,8 @@ public class GameController {
             player2.lose += 1;
             player1Win.setText("Win: " + player1.win);
             player2Lose.setText("Lose: " + player2.lose);
-            WinPopUp.display(player1name.getText());
+            appDialog = new WinPopUp(player1name.getText());
+            appDialog.display();
             player1Score.setText("8");
             player2Score.setText("8");
             reset();
@@ -565,7 +571,8 @@ public class GameController {
             player1.lose += 1;
             player2Win.setText("Win: " + player2.win);
             player1Lose.setText("Lose: " + player1.lose);
-            WinPopUp.display(player1name.getText());
+            appDialog = new WinPopUp(player2name.getText());
+            appDialog.display();
             player1Score.setText("8");
             player2Score.setText("8");
             reset();

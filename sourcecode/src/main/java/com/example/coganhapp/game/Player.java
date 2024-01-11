@@ -12,6 +12,12 @@ public class Player {
         this.win = win;
         this.lose = lose;
     }
+    public Player(String name, PlayerSide side) {
+        this.playerName = name;
+        this.side = side;
+        this.win = 0;
+        this.lose = 0;
+    }
 
     public PlayerSide getSide() {
         return side;
