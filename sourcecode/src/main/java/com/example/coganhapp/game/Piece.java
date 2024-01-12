@@ -10,7 +10,7 @@ public class Piece extends Circle {
     private Player player;
 
     public Piece(int row, int column, Player player) {
-        super(80+80*column,113+80*row,10);
+        super(83.5+83.5*column,99.5+82*row,10);
         if(player == null) {
             setOpacity(0);
         } else {

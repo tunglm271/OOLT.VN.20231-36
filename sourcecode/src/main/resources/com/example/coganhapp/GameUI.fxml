@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.GameController">
    <children>
       <AnchorPane fx:id="menuPane" layoutY="78.0" prefHeight="467.0" prefWidth="150.0" style="-fx-background-color: #5f43b2; -fx-background-radius: 0 5em 0  0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0);">
          <children>
@@ -128,7 +128,7 @@
          <children>
             <AnchorPane id="AppWall" fx:id="gameBroad" layoutX="146.0" layoutY="3.0" prefHeight="552.0" prefWidth="494.0" style="-fx-background-radius: 0 0 0 4em;">
                <children>
-                  <ImageView fitHeight="328.0" fitWidth="339.0" layoutX="75.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="349.0" fitWidth="360.0" layoutX="73.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@media/gamebroad.png" />
                      </image>
@@ -150,7 +150,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="154.0" layoutY="27.0" prefHeight="55.0" prefWidth="176.0">
+                  <HBox layoutX="163.0" layoutY="24.0" prefHeight="55.0" prefWidth="176.0">
                      <children>
                         <Label fx:id="player1Score" alignment="CENTER" prefHeight="55.0" prefWidth="63.0" text="8" textFill="#ff0808">
                            <font>
