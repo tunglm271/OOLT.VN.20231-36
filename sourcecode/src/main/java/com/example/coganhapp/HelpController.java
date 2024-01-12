@@ -22,32 +22,6 @@ public class HelpController {
     private TextArea guideText2;
 
     @FXML
-    protected void menuButtonEnterEffect(MouseEvent e) {
-        if(e.getTarget() instanceof HBox box) {
-            box.setStyle("-fx-background-color: #3a3153;-fx-background-radius: 2em");
-        }
-    }
-
-    @FXML
-    protected void menuButtonLeaveEffect(MouseEvent e) {
-        if(e.getTarget() instanceof HBox box) {
-            box.setStyle("-fx-background-color:  #5f43b2");
-        }
-    }
-
-    @FXML
-    protected void clickExitButton() {
-        Platform.exit();
-    }
-
-    @FXML
-    protected void clickStartButton(MouseEvent event) throws IOException {
-        Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GameUI.fxml")));
-        Node source = (Node) event.getSource();
-        source.getScene().setRoot(root);
-    }
-
-    @FXML
     public void initialize() {
         guideText.setText("""
                 Cờ Gánh (hay Cờ Chém), là một trò chơi thuộc thể loại chiến thuật cực kỳ thú vị, đòi hỏi sự tư duy, kỹ năng, và sự sáng tạo. Nguồn gốc của trò chơi cờ gánh bắt nguồn từ tỉnh Quảng Nam, Việt Nam. Thú vị hơn hết, cờ gánh được sáng tạo từ bộ môn cờ vây, cờ tướng.

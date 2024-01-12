@@ -47,7 +47,6 @@ public class GameController {
 
     private int historyKernel = 0;
 
-    private boolean checkNumber = true;
 
     @FXML
     private AnchorPane ancherRoot;
@@ -57,6 +56,7 @@ public class GameController {
 
     @FXML
     private TextField inputName1;
+
 
     @FXML
     private TextField inputName2;
@@ -99,8 +99,6 @@ public class GameController {
 
     @FXML
     private HBox helpButton;
-    @FXML
-    private HBox historyBtn;
 
 
     @FXML
@@ -113,7 +111,7 @@ public class GameController {
     @FXML
     private Label undoText;
 
-    Displayable appDialog;
+    private Displayable appDialog;
 
     @FXML
     protected void undoEnterEffect() {
@@ -240,17 +238,9 @@ public class GameController {
     }
 
     @FXML
-    protected void enterPlayerName(ActionEvent event) {
-        if(event.getSource() == inputName1) {
-            player1name.setText(inputName1.getText());
-            player1.setPlayerName(inputName1.getText());
-        } else {
-            player2name.setText(inputName2.getText());
-            player2.setPlayerName(inputName2.getText());
-        }
-    }
-    @FXML
     public  void initialize() {
+        player1name.textProperty().bind(inputName1.textProperty());
+        player2name.textProperty().bind(inputName2.textProperty());
         FadeTransition animation = new FadeTransition();
         animation.setDuration(Duration.seconds(1));
         animation.setNode(player1Card);

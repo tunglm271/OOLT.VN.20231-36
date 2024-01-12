@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="796.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coganhapp.GameController">
    <children>
       <AnchorPane fx:id="menuPane" layoutY="78.0" prefHeight="467.0" prefWidth="150.0" style="-fx-background-color: #5f43b2; -fx-background-radius: 0 5em 0  0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0);">
          <children>
@@ -110,13 +110,13 @@
                   <Image url="@media/icons8-woman-96.png" />
                </image>
             </ImageView>
-            <TextField fx:id="inputName1" layoutX="45.0" layoutY="380.0" onAction="#enterPlayerName" prefHeight="22.0" prefWidth="96.0" text="Player 1" />
+            <TextField fx:id="inputName1" layoutX="45.0" layoutY="380.0" prefHeight="22.0" prefWidth="96.0" text="Player 1" />
             <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="10.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@media/icons8-man-96.png" />
                </image>
             </ImageView>
-            <TextField fx:id="inputName2" layoutX="45.0" layoutY="417.0" onAction="#enterPlayerName" prefHeight="22.0" prefWidth="96.0" text="Player 2" />
+            <TextField fx:id="inputName2" layoutX="45.0" layoutY="417.0" prefHeight="22.0" prefWidth="96.0" text="Player 2" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="78.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
